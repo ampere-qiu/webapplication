@@ -1,0 +1,1682 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="React / Node.js / Socket.IO course content for Web Application training.">
+      
+      
+        <meta name="author" content="Ampere">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../week10/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Setup - SSD Web Application</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup-react-nodejs-socketio" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="SSD Web Application" class="md-header__button md-logo" aria-label="SSD Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SSD Web Application
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SSD Web Application" class="md-nav__button md-logo" aria-label="SSD Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    SSD Web Application
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 作成するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 先に確認するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nodejsnpmnpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Node.js、npm、npx を確認する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Node.js が入っていない場合
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. VS Code を開く
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vs-code-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. VS Code Terminal を開く
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. よく使うコマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. プロジェクトフォルダを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. server フォルダを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Node.js サーバープロジェクトを初期化する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. サーバー用ライブラリをインストールする
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-serverjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. server.js を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-react-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. React Client を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-socketio-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Socket.IO Client をインストールする
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 最終的なフォルダ構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Server の起動方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-react-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. React Client の起動方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. 変更したときの注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. よくあるエラー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. セットアップ確認チェックリスト
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 作成するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 先に確認するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nodejsnpmnpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Node.js、npm、npx を確認する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Node.js が入っていない場合
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. VS Code を開く
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-vs-code-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. VS Code Terminal を開く
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. よく使うコマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. プロジェクトフォルダを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. server フォルダを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Node.js サーバープロジェクトを初期化する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. サーバー用ライブラリをインストールする
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-serverjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. server.js を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-react-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. React Client を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-socketio-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Socket.IO Client をインストールする
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 最終的なフォルダ構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Server の起動方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-react-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. React Client の起動方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. 変更したときの注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. よくあるエラー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. セットアップ確認チェックリスト
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="setup-react-nodejs-socketio">Setup: React + Node.js + Socket.IO<a class="headerlink" href="#setup-react-nodejs-socketio" title="Permanent link">&para;</a></h1>
+<p>このページは、<strong>ミニ課題を始める前</strong>に行うセットアップ用ページである。</p>
+<p>このページでは、以下の準備を行う。</p>
+<ul>
+<li>Node.js、npm、npx が使えるか確認する</li>
+<li>プロジェクト用フォルダを作成する</li>
+<li><code>server</code> フォルダを作成する</li>
+<li>React の <code>client</code> を作成する</li>
+<li>必要なライブラリをインストールする</li>
+<li>Server と React Client の起動方法を確認する</li>
+</ul>
+<p>このページが完了したら、次のページに進む。</p>
+<p><a href="../week10/">Week 10: Introduction to Socket.IO</a></p>
+<hr />
+<p><a id="1"></a></p>
+<h2 id="1">1. 作成するもの<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>この演習では、次のようなプロジェクトを作成する。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+├── server/   ← Node.js + Socket.IO server
+└── client/   ← React application
+</code></pre></div>
+<p>このプロジェクトには、2つのプログラムがある。</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+<th>Main file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server</code></td>
+<td>Node.js で動くサーバー側プログラム</td>
+<td><code>server/server.js</code></td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>React で作るブラウザ側プログラム</td>
+<td><code>client/src/App.js</code></td>
+</tr>
+</tbody>
+</table>
+<p>重要な点は次の通りである。</p>
+<ul>
+<li><code>server</code> フォルダは <strong>自分で作成する</strong>。</li>
+<li><code>server.js</code> ファイルも <strong>自分で作成する</strong>。</li>
+<li><code>client</code> フォルダは <strong>React のコマンドで自動作成される</strong>。</li>
+<li><code>client/src/App.js</code> は React によって自動作成される。あとで中身を書き換える。</li>
+</ul>
+<hr />
+<p><a id="2"></a></p>
+<h2 id="2">2. 先に確認するもの<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>React や Socket.IO を使う前に、まず以下が使えるか確認する必要がある。</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>何に使うか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node.js</td>
+<td>JavaScript をパソコン上で実行するために使う</td>
+</tr>
+<tr>
+<td>npm</td>
+<td>JavaScript のライブラリをインストールするために使う</td>
+</tr>
+<tr>
+<td>npx</td>
+<td>React プロジェクト作成などのコマンドを実行するために使う</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td>コードを書くために使う</td>
+</tr>
+</tbody>
+</table>
+<p>重要である。
+<code>npx create-react-app client</code> を実行する前に、必ず Node.js、npm、npx を確認すること。</p>
+<hr />
+<p><a id="3"></a></p>
+<h2 id="3-nodejsnpmnpx">3. Node.js、npm、npx を確認する<a class="headerlink" href="#3-nodejsnpmnpx" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="31">3.1 どこで行うか<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>Windows の場合は PowerShell、macOS の場合は Terminal が開くことが多い。
+どちらでも、ここで使う基本コマンドはほとんど同じである。</p>
+<hr />
+<h3 id="32-nodejs">3.2 Node.js の確認<a class="headerlink" href="#32-nodejs" title="Permanent link">&para;</a></h3>
+<p>VS Code Terminal に次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
+</code></pre></div>
+<p>バージョン番号が表示されれば、Node.js はインストールされている。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>v20.11.0
+</code></pre></div>
+<p>または</p>
+<div class="highlight"><pre><span></span><code>v22.11.0
+</code></pre></div>
+<p>数字は人によって違ってよい。
+バージョン番号が表示されることが重要である。</p>
+<hr />
+<h3 id="33-npm">3.3 npm の確認<a class="headerlink" href="#33-npm" title="Permanent link">&para;</a></h3>
+<p>次に、以下のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>-v
+</code></pre></div>
+<p>バージョン番号が表示されれば、npm も使える。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>10.2.4
+</code></pre></div>
+<hr />
+<h3 id="34-npx">3.4 npx の確認<a class="headerlink" href="#34-npx" title="Permanent link">&para;</a></h3>
+<p>次に、以下のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>-v
+</code></pre></div>
+<p>バージョン番号が表示されれば、npx も使える。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>10.2.4
+</code></pre></div>
+<hr />
+<h3 id="35">3.5 確認結果<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<p>以下の3つすべてでバージョン番号が表示されれば、次に進んでよい。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
+npm<span class="w"> </span>-v
+npx<span class="w"> </span>-v
+</code></pre></div>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>v20.11.0
+10.2.4
+10.2.4
+</code></pre></div>
+<p>もし <code>node</code>、<code>npm</code>、<code>npx</code> のどれかが認識されない場合は、次の「Node.js が入っていない場合」を読むこと。</p>
+<hr />
+<p><a id="4"></a></p>
+</div>
+<h2 id="4-nodejs">4. Node.js が入っていない場合<a class="headerlink" href="#4-nodejs" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="41-windows">4.1 Windows の場合<a class="headerlink" href="#41-windows" title="Permanent link">&para;</a></h3>
+<p>Node.js が入っていない場合は、Node.js の公式ページから <strong>LTS</strong> 版をインストールする。</p>
+<div class="admonition details">
+<p class="admonition-title">Windows で Node.js をインストールする手順</p>
+<ol>
+<li>Webブラウザで <code>Node.js download</code> と検索する。</li>
+<li>Node.js の公式ページを開く。</li>
+<li><strong>LTS</strong> と書かれているバージョンを選ぶ。</li>
+<li>Windows Installer をダウンロードする。</li>
+<li>ダウンロードしたインストーラーを開く。</li>
+<li>基本的には、そのまま <strong>Next</strong> を押してインストールする。</li>
+<li>インストールが終わったら、VS Code を一度閉じる。</li>
+<li>VS Code をもう一度開く。</li>
+<li>Terminal を開き、もう一度確認する。</li>
+</ol>
+<p>確認コマンド：</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
+npm<span class="w"> </span>-v
+npx<span class="w"> </span>-v
+</code></pre></div>
+<p>3つともバージョン番号が表示されれば、準備完了です。</p>
+</div>
+<hr />
+<h3 id="42-macos">4.2 macOS の場合<a class="headerlink" href="#42-macos" title="Permanent link">&para;</a></h3>
+<p>Node.js が入っていない場合は、Node.js の公式ページから <strong>LTS</strong> 版をインストールする。</p>
+<div class="admonition details">
+<p class="admonition-title">macOS で Node.js をインストールする手順</p>
+<ol>
+<li>Webブラウザで <code>Node.js download</code> と検索する。</li>
+<li>Node.js の公式ページを開く。</li>
+<li><strong>LTS</strong> と書かれているバージョンを選ぶ。</li>
+<li>macOS Installer をダウンロードする。</li>
+<li>ダウンロードしたインストーラーを開く。</li>
+<li>基本的には、そのまま進めてインストールする。</li>
+<li>インストールが終わったら、VS Code を一度閉じる。</li>
+<li>VS Code をもう一度開く。</li>
+<li>Terminal を開き、もう一度確認する。</li>
+</ol>
+<p>確認コマンド：</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
+npm<span class="w"> </span>-v
+npx<span class="w"> </span>-v
+</code></pre></div>
+<p>3つともバージョン番号が表示されれば、準備完了です。</p>
+</div>
+<hr />
+<h3 id="43">4.3 注意<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<div class="admonition hint">
+<p class="admonition-title">インストール後の注意</p>
+<p>Node.js をインストールした直後に、古い Terminal では <code>node</code> が認識されないことがあります。
+その場合は、VS Code を閉じて、もう一度開くと改善します。</p>
+</div>
+<hr />
+<p><a id="5"></a></p>
+</div>
+<h2 id="5-vs-code">5. VS Code を開く<a class="headerlink" href="#5-vs-code" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="51-vs-code">5.1 VS Code で作業用フォルダを開く<a class="headerlink" href="#51-vs-code" title="Permanent link">&para;</a></h3>
+<p>まず、Visual Studio Code を開く。</p>
+<p>次に、上のメニューから以下を選ぶ。</p>
+<div class="highlight"><pre><span></span><code>File → Open Folder...
+</code></pre></div>
+<p>作業したい場所を選ぶ。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>Documents
+</code></pre></div>
+<p>または</p>
+<div class="highlight"><pre><span></span><code>Desktop
+</code></pre></div>
+<p>ここでは、例として <code>Documents</code> や <code>Desktop</code> を使っている。
+自分が分かりやすい場所であれば、どこでもよい。</p>
+<hr />
+<p><a id="6"></a></p>
+</div>
+<h2 id="6-vs-code-terminal">6. VS Code Terminal を開く<a class="headerlink" href="#6-vs-code-terminal" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<p>VS Code の上のメニューから以下を選ぶ。</p>
+<div class="highlight"><pre><span></span><code>Terminal → New Terminal
+</code></pre></div>
+<p>画面の下に Terminal が表示される。</p>
+<p>Windows の場合、多くの場合は <strong>PowerShell</strong> が開く。
+macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash</strong> が開く。</p>
+<p>この資料の基本コマンドは、Windows と macOS の両方で使える。</p>
+<hr />
+<p><a id="7"></a></p>
+</div>
+<h2 id="7">7. よく使うコマンド<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<p>ここでは、このセットアップで使う基本コマンドを説明する。</p>
+<hr />
+<h3 id="71-mkdir">7.1 <code>mkdir</code><a class="headerlink" href="#71-mkdir" title="Permanent link">&para;</a></h3>
+<p><code>mkdir</code> は <strong>make directory</strong> の意味である。
+つまり、新しいフォルダを作るコマンドである。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>chatapp
+</code></pre></div>
+<p>これは、<code>chatapp</code> という名前のフォルダを作成する。</p>
+<hr />
+<h3 id="72-cd">7.2 <code>cd</code><a class="headerlink" href="#72-cd" title="Permanent link">&para;</a></h3>
+<p><code>cd</code> は <strong>change directory</strong> の意味である。
+つまり、別のフォルダに移動するコマンドである。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp
+</code></pre></div>
+<p>これは、<code>chatapp</code> フォルダの中に移動する、という意味である。</p>
+<hr />
+<h3 id="73-cd">7.3 <code>cd ..</code><a class="headerlink" href="#73-cd" title="Permanent link">&para;</a></h3>
+<p><code>cd ..</code> は、1つ上のフォルダに戻るという意味である。</p>
+<p>例として、現在いる場所が次の場所であるとする。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<p>ここで次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>すると、次の場所に戻る。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+</code></pre></div>
+<hr />
+<h3 id="74-npm">7.4 <code>npm</code><a class="headerlink" href="#74-npm" title="Permanent link">&para;</a></h3>
+<p><code>npm</code> は JavaScript のライブラリをインストールするために使う。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>express<span class="w"> </span>socket.io
+</code></pre></div>
+<p>これは、<code>express</code> と <code>socket.io</code> というライブラリをインストールする。</p>
+<hr />
+<h3 id="75-npx">7.5 <code>npx</code><a class="headerlink" href="#75-npx" title="Permanent link">&para;</a></h3>
+<p><code>npx</code> は、ツールを一時的に実行するために使う。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>create-react-app<span class="w"> </span>client
+</code></pre></div>
+<p>これは、React プロジェクトを作成するコマンドである。
+このコマンドを実行すると、<code>client</code> フォルダが自動的に作成される。</p>
+<hr />
+<p><a id="8"></a></p>
+</div>
+<h2 id="8">8. プロジェクトフォルダを作成する<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="81">8.1 どこで行うか<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>今いる場所は、VS Code で開いた作業用フォルダである。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>Documents
+</code></pre></div>
+<p>または</p>
+<div class="highlight"><pre><span></span><code>Desktop
+</code></pre></div>
+<hr />
+<h3 id="82-chatapp">8.2 <code>chatapp</code> フォルダを作る<a class="headerlink" href="#82-chatapp" title="Permanent link">&para;</a></h3>
+<p>VS Code Terminal に次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>chatapp
+</code></pre></div>
+<p>これで、<code>chatapp</code> フォルダが作成される。</p>
+<hr />
+<h3 id="83-chatapp">8.3 <code>chatapp</code> フォルダに移動する<a class="headerlink" href="#83-chatapp" title="Permanent link">&para;</a></h3>
+<p>次に、以下のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp
+</code></pre></div>
+<p>これで、現在の場所は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+</code></pre></div>
+<hr />
+<p><a id="9"></a></p>
+</div>
+<h2 id="9-server">9. server フォルダを作成する<a class="headerlink" href="#9-server" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="91">9.1 どこで行うか<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>現在いる場所が次の場所であることを確認する。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+</code></pre></div>
+<hr />
+<h3 id="92-server">9.2 <code>server</code> フォルダを作る<a class="headerlink" href="#92-server" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>server
+</code></pre></div>
+<p>これで、<code>server</code> フォルダが作成される。</p>
+<p>現在のフォルダ構成は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+└── server/
+</code></pre></div>
+<hr />
+<h3 id="93-server">9.3 <code>server</code> フォルダに移動する<a class="headerlink" href="#93-server" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>server
+</code></pre></div>
+<p>これで、現在の場所は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<hr />
+<p><a id="10"></a></p>
+</div>
+<h2 id="10-nodejs">10. Node.js サーバープロジェクトを初期化する<a class="headerlink" href="#10-nodejs" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="101">10.1 どこで行うか<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>必ず、現在いる場所が次の場所であることを確認する。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<hr />
+<h3 id="102-npm-init">10.2 <code>npm init</code> を実行する<a class="headerlink" href="#102-npm-init" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>init<span class="w"> </span>-y
+</code></pre></div>
+<p>このコマンドを実行すると、次のファイルが自動で作成される。</p>
+<div class="highlight"><pre><span></span><code>package.json
+</code></pre></div>
+<hr />
+<h3 id="103-packagejson">10.3 <code>package.json</code> とは<a class="headerlink" href="#103-packagejson" title="Permanent link">&para;</a></h3>
+<p><code>package.json</code> は、この Node.js プロジェクトの情報を保存するファイルである。</p>
+<p>たとえば、次のような情報が入る。</p>
+<ul>
+<li>プロジェクト名</li>
+<li>使用しているライブラリ</li>
+<li>実行に必要な情報</li>
+</ul>
+<p><code>package.json</code> は自動で作成される。
+この演習では、基本的に自分で編集する必要はない。</p>
+<hr />
+<p><a id="11"></a></p>
+</div>
+<h2 id="11">11. サーバー用ライブラリをインストールする<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="111">11.1 どこで行うか<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>必ず、現在いる場所が次の場所であることを確認する。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<hr />
+<h3 id="112-express-socketio">11.2 <code>express</code> と <code>socket.io</code> をインストールする<a class="headerlink" href="#112-express-socketio" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>express<span class="w"> </span>socket.io
+</code></pre></div>
+<hr />
+<h3 id="113">11.3 インストールされるライブラリ<a class="headerlink" href="#113" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>express</code></td>
+<td>Web サーバーを作るために使う</td>
+</tr>
+<tr>
+<td><code>socket.io</code></td>
+<td>リアルタイム通信を行うために使う</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="114">11.4 自動で作成されるもの<a class="headerlink" href="#114" title="Permanent link">&para;</a></h3>
+<p>このコマンドを実行すると、次のファイルやフォルダが自動で作成される。</p>
+<div class="highlight"><pre><span></span><code>server/
+├── node_modules/
+├── package.json
+└── package-lock.json
+</code></pre></div>
+<hr />
+<h3 id="115-node_modules">11.5 <code>node_modules</code> について<a class="headerlink" href="#115-node_modules" title="Permanent link">&para;</a></h3>
+<p><code>node_modules</code> には、インストールされたライブラリのファイルが入っている。</p>
+<p><code>node_modules</code> の中身は編集しない。
+とても多くのファイルがあるが、これは正常である。</p>
+<hr />
+<p><a id="12"></a></p>
+</div>
+<h2 id="12-serverjs">12. server.js を作成する<a class="headerlink" href="#12-serverjs" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="121">12.1 どこで行うか<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code の Explorer</strong> で行う。</p>
+<p>左側のファイル一覧を使ってファイルを作成する。</p>
+<hr />
+<h3 id="122-serverjs">12.2 <code>server.js</code> ファイルを作る<a class="headerlink" href="#122-serverjs" title="Permanent link">&para;</a></h3>
+<p>VS Code の左側にある Explorer を見る。</p>
+<p>次の手順でファイルを作成する。</p>
+<ol>
+<li><code>server</code> フォルダを右クリックする。</li>
+<li><strong>New File</strong> を選ぶ。</li>
+<li>ファイル名として、次を入力する。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>server.js
+</code></pre></div>
+<hr />
+<h3 id="123-server">12.3 現在の server フォルダ<a class="headerlink" href="#123-server" title="Permanent link">&para;</a></h3>
+<p>作成後、<code>server</code> フォルダは次のようになる。</p>
+<div class="highlight"><pre><span></span><code>server/
+├── server.js
+├── package.json
+├── package-lock.json
+└── node_modules/
+</code></pre></div>
+<p>この時点では、<code>server.js</code> は空でよい。
+Week 10 のページでコードを書く。</p>
+<hr />
+<p><a id="13"></a></p>
+</div>
+<h2 id="13-react-client">13. React Client を作成する<a class="headerlink" href="#13-react-client" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="131">13.1 どこで行うか<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>まず、現在いる場所を確認する。</p>
+<p>もし現在の場所が次の場所なら、</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<p>1つ上に戻る必要がある。</p>
+<hr />
+<h3 id="132-chatapp">13.2 <code>chatapp</code> フォルダに戻る<a class="headerlink" href="#132-chatapp" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>これで、現在の場所は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+</code></pre></div>
+<hr />
+<h3 id="133-react">13.3 React プロジェクトを作成する<a class="headerlink" href="#133-react" title="Permanent link">&para;</a></h3>
+<p>現在の場所が <code>chatapp/</code> であることを確認してから、次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>create-react-app<span class="w"> </span>client
+</code></pre></div>
+<p>このコマンドにより、<code>client</code> フォルダが自動で作成される。</p>
+<p>重要である。
+<code>client</code> フォルダは自分で作らない。
+<code>client</code> フォルダは、<code>npx create-react-app client</code> によって自動で作成される。</p>
+<p>先に自分で <code>client</code> フォルダを作ると、エラーになる場合がある。</p>
+<hr />
+<h3 id="134">13.4 質問が表示された場合<a class="headerlink" href="#134" title="Permanent link">&para;</a></h3>
+<p>初めてこのコマンドを実行すると、Terminal に次のような質問が表示される場合がある。</p>
+<div class="highlight"><pre><span></span><code>Need to install the following packages:
+create-react-app
+Ok to proceed? (y)
+</code></pre></div>
+<p>この場合は、次のように入力して Enter を押す。</p>
+<div class="highlight"><pre><span></span><code>y
+</code></pre></div>
+<hr />
+<h3 id="135">13.5 時間がかかる場合<a class="headerlink" href="#135" title="Permanent link">&para;</a></h3>
+<p>このコマンドは数分かかることがある。</p>
+<p>Terminal に多くの文字が表示されるが、エラーでなければ問題ない。</p>
+<p>完了すると、プロジェクトは次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+├── server/
+└── client/
+</code></pre></div>
+<hr />
+<p><a id="14"></a></p>
+</div>
+<h2 id="14-socketio-client">14. Socket.IO Client をインストールする<a class="headerlink" href="#14-socketio-client" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="141">14.1 どこで行うか<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
+<p>今は <code>chatapp/</code> にいるはずである。</p>
+<hr />
+<h3 id="142-client">14.2 <code>client</code> フォルダに移動する<a class="headerlink" href="#142-client" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>client
+</code></pre></div>
+<p>これで、現在の場所は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/client/
+</code></pre></div>
+<hr />
+<h3 id="143-socketio-client">14.3 <code>socket.io-client</code> をインストールする<a class="headerlink" href="#143-socketio-client" title="Permanent link">&para;</a></h3>
+<p>次のコマンドを入力する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>socket.io-client
+</code></pre></div>
+<p>このライブラリは、React から Socket.IO サーバーに接続するために使う。</p>
+<hr />
+<p><a id="15"></a></p>
+</div>
+<h2 id="15">15. 最終的なフォルダ構成<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<p>ここまで完了すると、プロジェクトは次のようになる。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+├── server/
+│   ├── server.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── node_modules/
+│
+└── client/
+    ├── src/
+    │   └── App.js
+    ├── package.json
+    ├── package-lock.json
+    └── node_modules/
+</code></pre></div>
+<p>Week 10 で主に編集するファイルは次の2つである。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/server.js
+chatapp/client/src/App.js
+</code></pre></div>
+<hr />
+<p><a id="16"></a></p>
+</div>
+<h2 id="16-server">16. Server の起動方法<a class="headerlink" href="#16-server" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<p>サーバーと React は別々のプログラムである。
+そのため、<strong>VS Code Terminal を2つ</strong>使う。</p>
+<h3 id="161">16.1 どこで行うか<a class="headerlink" href="#161" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>1つ目の VS Code Terminal</strong> で行う。</p>
+<p>この Terminal は Server 用である。</p>
+<hr />
+<h3 id="162-server">16.2 <code>server</code> フォルダに移動する<a class="headerlink" href="#162-server" title="Permanent link">&para;</a></h3>
+<p><code>server</code> フォルダに移動する。</p>
+<p>もし VS Code Terminal が最初の作業フォルダにいる場合は、次のように入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp/server
+</code></pre></div>
+<p>もしすでに <code>chatapp/</code> にいる場合は、次のように入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>server
+</code></pre></div>
+<p>もしすでに <code>chatapp/server/</code> にいる場合は、移動する必要はない。</p>
+<hr />
+<h3 id="163-server">16.3 Server を起動する<a class="headerlink" href="#163-server" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/server/</code> にいる状態で、次を実行する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p><code>server.js</code> に正しいコードが書かれていれば、次のような表示が出る。</p>
+<div class="highlight"><pre><span></span><code>Server running at http://localhost:3001
+</code></pre></div>
+<p>Week 10 のコードを書く前は、<code>server.js</code> が空のため、まだ正しく起動しない場合がある。
+Week 10 で <code>server.js</code> のコードを書いたあとに、このコマンドを実行する。</p>
+<hr />
+<p><a id="17"></a></p>
+</div>
+<h2 id="17-react-client">17. React Client の起動方法<a class="headerlink" href="#17-react-client" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="171">17.1 どこで行うか<a class="headerlink" href="#171" title="Permanent link">&para;</a></h3>
+<p>この作業は、<strong>2つ目の VS Code Terminal</strong> で行う。</p>
+<p>新しい Terminal を開く。</p>
+<div class="highlight"><pre><span></span><code>Terminal → New Terminal
+</code></pre></div>
+<p>この Terminal は React Client 用である。</p>
+<hr />
+<h3 id="172-client">17.2 <code>client</code> フォルダに移動する<a class="headerlink" href="#172-client" title="Permanent link">&para;</a></h3>
+<p><code>client</code> フォルダに移動する。</p>
+<p>もし VS Code Terminal が最初の作業フォルダにいる場合は、次のように入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp/client
+</code></pre></div>
+<p>もしすでに <code>chatapp/</code> にいる場合は、次のように入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>client
+</code></pre></div>
+<p>もしすでに <code>chatapp/client/</code> にいる場合は、移動する必要はない。</p>
+<hr />
+<h3 id="173-react">17.3 React を起動する<a class="headerlink" href="#173-react" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/client/</code> にいる状態で、次を実行する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>start
+</code></pre></div>
+<p>ブラウザが自動で開く。</p>
+<p>React は通常、次の URL で開く。</p>
+<div class="highlight"><pre><span></span><code>http://localhost:3000
+</code></pre></div>
+<hr />
+<p><a id="18"></a></p>
+</div>
+<h2 id="18">18. 変更したときの注意<a class="headerlink" href="#18" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="181-appjs">18.1 <code>App.js</code> を変更した場合<a class="headerlink" href="#181-appjs" title="Permanent link">&para;</a></h3>
+<p><code>App.js</code> は React 側のファイルである。</p>
+<p>場所：</p>
+<div class="highlight"><pre><span></span><code>chatapp/client/src/App.js
+</code></pre></div>
+<p><code>App.js</code> を変更した場合は、基本的に次の操作だけでよい。</p>
+<div class="highlight"><pre><span></span><code>保存する
+</code></pre></div>
+<p>React は自動的にブラウザを更新する。
+そのため、通常は <code>npm start</code> をやり直す必要はない。</p>
+<hr />
+<h3 id="182-serverjs">18.2 <code>server.js</code> を変更した場合<a class="headerlink" href="#182-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> はサーバー側のファイルである。</p>
+<p>場所：</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/server.js
+</code></pre></div>
+<p><code>server.js</code> を変更した場合は、サーバーを再起動する必要がある。</p>
+<p>手順：</p>
+<ol>
+<li><code>server.js</code> を保存する。</li>
+<li>Server を動かしている Terminal をクリックする。</li>
+<li>次のキーを押して Server を止める。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<ol>
+<li>もう一度 Server を起動する。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p>重要である。
+<code>server.js</code> を変更しても、Server を再起動しなければ新しいコードは反映されない。</p>
+<hr />
+<p><a id="19"></a></p>
+</div>
+<h2 id="19">19. よくあるエラー<a class="headerlink" href="#19" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<h3 id="191-node">19.1 <code>node</code> が認識されない<a class="headerlink" href="#191-node" title="Permanent link">&para;</a></h3>
+<p>次のようなエラーが出る場合がある。</p>
+<div class="highlight"><pre><span></span><code>node is not recognized
+</code></pre></div>
+<p>または</p>
+<div class="highlight"><pre><span></span><code>command not found: node
+</code></pre></div>
+<p>この場合、Node.js が入っていない、または Terminal が古い状態である可能性がある。</p>
+<p>対処方法：</p>
+<ol>
+<li>Node.js の LTS 版をインストールする。</li>
+<li>VS Code を一度閉じる。</li>
+<li>VS Code をもう一度開く。</li>
+<li>Terminal を開き直す。</li>
+<li>次を確認する。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
+npm<span class="w"> </span>-v
+npx<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="192-npm">19.2 <code>npm</code> が認識されない<a class="headerlink" href="#192-npm" title="Permanent link">&para;</a></h3>
+<p>Node.js をインストールすると、通常 npm も一緒に使えるようになる。</p>
+<p>対処方法：</p>
+<ol>
+<li>Node.js の LTS 版をインストールし直す。</li>
+<li>VS Code を一度閉じる。</li>
+<li>VS Code をもう一度開く。</li>
+<li>Terminal を開き直す。</li>
+<li>次を確認する。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="193-npx">19.3 <code>npx</code> が認識されない<a class="headerlink" href="#193-npx" title="Permanent link">&para;</a></h3>
+<p><code>npx</code> が認識されない場合は、Node.js または npm が正しく入っていない可能性がある。</p>
+<p>対処方法：</p>
+<ol>
+<li>Node.js の LTS 版をインストールし直す。</li>
+<li>VS Code を一度閉じる。</li>
+<li>VS Code をもう一度開く。</li>
+<li>Terminal を開き直す。</li>
+<li>次を確認する。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="194-client">19.4 <code>client</code> フォルダ作成でエラーになる<a class="headerlink" href="#194-client" title="Permanent link">&para;</a></h3>
+<p><code>npx create-react-app client</code> でエラーになる場合、すでに <code>client</code> フォルダを作ってしまっている可能性がある。</p>
+<p>確認すること：</p>
+<div class="highlight"><pre><span></span><code>chatapp/client/
+</code></pre></div>
+<p>がすでに存在していないか確認する。</p>
+<p>もし空の <code>client</code> フォルダを自分で作ってしまった場合は、そのフォルダを削除してから、もう一度以下を実行する。</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>create-react-app<span class="w"> </span>client
+</code></pre></div>
+<hr />
+<h3 id="195-server-react-terminal">19.5 Server と React を同じ Terminal で起動しようとしている<a class="headerlink" href="#195-server-react-terminal" title="Permanent link">&para;</a></h3>
+<p>Server と React は別々のプログラムである。
+そのため、Terminal を2つ使う必要がある。</p>
+<table>
+<thead>
+<tr>
+<th>Terminal</th>
+<th>場所</th>
+<th>実行するコマンド</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terminal 1</td>
+<td><code>chatapp/server/</code></td>
+<td><code>node server.js</code></td>
+</tr>
+<tr>
+<td>Terminal 2</td>
+<td><code>chatapp/client/</code></td>
+<td><code>npm start</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="196-serverjs">19.6 <code>server.js</code> を変更したのに反映されない<a class="headerlink" href="#196-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更した場合は、Server を再起動する必要がある。</p>
+<p>手順：</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<p>そのあと、もう一度実行する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<hr />
+<p><a id="20"></a></p>
+</div>
+<h2 id="20">20. セットアップ確認チェックリスト<a class="headerlink" href="#20" title="Permanent link">&para;</a></h2>
+<div class="admonition details">
+<p class="admonition-title">▼ 詳しい内容を表示</p>
+<p>Week 10 を始める前に、次の項目を確認する。</p>
+<ul>
+<li>[ ] <code>node -v</code> でバージョン番号が表示された。</li>
+<li>[ ] <code>npm -v</code> でバージョン番号が表示された。</li>
+<li>[ ] <code>npx -v</code> でバージョン番号が表示された。</li>
+<li>[ ] <code>chatapp</code> フォルダを作成した。</li>
+<li>[ ] <code>chatapp/server</code> フォルダを作成した。</li>
+<li>[ ] <code>server.js</code> ファイルを作成した。</li>
+<li>[ ] <code>server</code> フォルダ内で <code>npm init -y</code> を実行した。</li>
+<li>[ ] <code>server</code> フォルダ内で <code>express</code> と <code>socket.io</code> をインストールした。</li>
+<li>[ ] <code>npx create-react-app client</code> を使って React アプリを作成した。</li>
+<li>[ ] <code>client</code> フォルダ内で <code>socket.io-client</code> をインストールした。</li>
+<li>[ ] <code>client/src/App.js</code> が存在することを確認した。</li>
+<li>[ ] Server の起動には <code>chatapp/server</code> で <code>node server.js</code> を使うことを確認した。</li>
+<li>[ ] React Client の起動には <code>chatapp/client</code> で <code>npm start</code> を使うことを確認した。</li>
+<li>[ ] Server と React Client は別々の Terminal で起動することを確認した。</li>
+</ul>
+<p>すべて完了したら、次のページに進む。</p>
+<p><a href="../week10/">Week 10: Introduction to Socket.IO</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,48 @@
+site_name: SSD Web Application
+site_description: 'React / Node.js / Socket.IO course content for Web Application training.'
+site_author: 'Ampere Mondheera Pituxcoosuvarn'
+site_name: Web Application
+
+copyright: Copyright &copy; 2026 Ampere Mondheera Pituxcoosuvarn.
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+      toc_depth: 2
+
+theme:
+  name: material
+  language: ja
+  font:
+    text: Roboto
+  logo: images/logo.png
+  favicon: images/favicon.png
+  palette:
+    - scheme: programming2
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - content.tabs.link
+    - navigation.top
+
+extra_css:
+  - "https://fonts.googleapis.com/earlyaccess/notosansjp.css"
+  - "https://fonts.googleapis.com/css?family=Open+Sans:600,800"
+  - "https://fonts.googleapis.com/icon?family=Material+Icons"
+  - "https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+  - stylesheets/extra.css
+extra_javascript:
+  - javascripts/extra.js
+
+nav:
+  - Home: index.md
+  - Setup: setup_socketio.md
+  - Week 10: week10.md

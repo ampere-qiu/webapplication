@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 -m mkdocs build --clean$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

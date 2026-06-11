@@ -1,0 +1,100 @@
+[data-md-color-scheme="programming2"] {
+  --md-primary-fg-color:        #a10000;
+  --md-primary-fg-color--light: #f05545;
+  --md-primary-fg-color--dark:  #7f0000;
+  --md-primary-bg-color:               #ffffff;
+  --md-primary-bg-color--light:        hsla(0, 0%, 100%, 0.7);
+
+  --md-accent-fg-color:                #00695c;
+  --md-accent-fg-color--transparent:   hsla(#{hex2hsl($clr-indigo-a200)}, 0.1);
+  --md-accent-bg-color:                #ffffff;
+  --md-accent-bg-color--light:         hsla(0, 0%, 100%, 0.7);
+}
+
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color:        #a10000;
+    --md-primary-fg-color--light: #f05545;
+    --md-primary-fg-color--dark:  #7f0000;
+    --md-primary-bg-color:               #ffffff;
+    --md-primary-bg-color--light:        hsla(0, 0%, 100%, 0.7);
+
+    --md-accent-fg-color:                #00695c;
+    --md-accent-fg-color--transparent:   hsla(#{hex2hsl($clr-indigo-a200)}, 0.1);
+    --md-accent-bg-color:                #ffffff;
+    --md-accent-bg-color--light:         hsla(0, 0%, 100%, 0.7);
+  --md-hue: 210;
+}
+
+.example code.highlight{
+    font-size: 1.1em
+}
+
+.inline-image {
+    margin : 0 0.5em;
+}
+
+.md-typeset h2 {
+  border-bottom: 1px solid #888;
+}
+
+.md-typeset h3 {
+  border-bottom: 1px dotted #888;
+}
+
+.add {
+    color: #ad1457
+}
+
+.cloud {
+    color: #1DA1F2
+}
+
+.trash {
+    color: #692927
+}
+
+.rectangle{
+    color: #0099b9
+}
+
+.redrectangle{
+    color: #ad1457
+}
+
+.send{
+    color: #FD7E00
+}
+
+.time{
+    color: #ffd700
+}
+
+.check{
+    color: #008000
+}
+
+.button{
+    background: #ad1457;
+    color: #ffffff
+}
+
+.text-button{
+    color: #ad1457
+}
+
+.grid{
+    color: #ad1457
+}
+
+.btn-material {
+  position: relative;
+  display: inline-block;
+  font-weight: normal;
+  padding: 0.1em 0.5em;
+  text-decoration: none;
+  color: #ffffff;
+  background: #ad1457;
+  border-radius: 4px;
+  transition: .4s;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.29);
+}
