@@ -1,0 +1,1856 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="React / Node.js / Socket.IO course content for Web Application training.">
+      
+      
+        <meta name="author" content="Ampere Mondheera Pituxcoosuvarn">
+      
+      
+      
+        <link rel="prev" href="../setup_socketio/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Week 10 - Web Application</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-10-introduction-to-socketio" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="Web Application" class="md-header__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web Application
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 10
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Web Application" class="md-nav__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Web Application
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_socketio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. この週で学ぶこと
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Socket.IO の基本的な考え方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-week-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Week 10 で使うファイル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-1-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step 1: サーバーから Reactクライアントにメッセージを送る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-2-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step 2: Reactクライアントからサーバーにメッセージを送る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Step 3: 匿名チャットを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Step 4: 名前付きチャットを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ミニ課題10の提出内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるエラーと確認ポイント
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. この週で学ぶこと
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Socket.IO の基本的な考え方
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-week-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Week 10 で使うファイル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-1-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step 1: サーバーから Reactクライアントにメッセージを送る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-2-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step 2: Reactクライアントからサーバーにメッセージを送る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Step 3: 匿名チャットを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Step 4: 名前付きチャットを作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ミニ課題10の提出内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるエラーと確認ポイント
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-10-introduction-to-socketio">Week 10: Introduction to Socket.IO<a class="headerlink" href="#week-10-introduction-to-socketio" title="Permanent link">&para;</a></h1>
+<p>このページでは、Socket.IO を用いて、簡単なリアルタイムチャットアプリを作成する。</p>
+<p>Week 10 では、次の4つの Step を順番に実装する。</p>
+<ul>
+<li>Step 1: サーバーから Reactクライアントにメッセージを送る</li>
+<li>Step 2: Reactクライアントからサーバーにメッセージを送る</li>
+<li>Step 3: 匿名チャットを作成する</li>
+<li>Step 4: 名前付きチャットを作成する</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>ミニ課題10として提出するのは <strong>Step 4 の完成版のみ</strong> である。</p>
+<p>Step 1〜Step 3 は練習用である。ただし、Step 4 を理解するために、順番に実装することを推奨する。</p>
+</div>
+<hr />
+<h2 id="1">1. この週で学ぶこと<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>Week 10 では、リアルタイム通信の基本を学ぶ。</p>
+<p>通常の Web アプリケーションでは、ブラウザがサーバーにリクエストを送り、サーバーがレスポンスを返す。</p>
+<div class="highlight"><pre><span></span><code>Browser → Server → Response
+</code></pre></div>
+<p>しかし、チャットアプリでは、あるユーザーがメッセージを送ったときに、他のユーザーの画面にもすぐにメッセージを表示する必要がある。</p>
+<p>このような処理には、サーバーからクライアントにデータを送る仕組みが必要である。</p>
+<p>この授業では、そのために <strong>Socket.IO</strong> を使う。</p>
+<hr />
+<h2 id="2-socketio">2. Socket.IO の基本的な考え方<a class="headerlink" href="#2-socketio" title="Permanent link">&para;</a></h2>
+<h3 id="21-socketio">2.1 Socket.IO とは<a class="headerlink" href="#21-socketio" title="Permanent link">&para;</a></h3>
+<p>Socket.IO は、サーバーとクライアントの間でリアルタイム通信を行うための JavaScript ライブラリである。</p>
+<p>Socket.IO を使うと、次のような通信ができる。</p>
+<ul>
+<li>サーバーからクライアントにメッセージを送る</li>
+<li>クライアントからサーバーにメッセージを送る</li>
+<li>サーバーからすべてのクライアントにメッセージを送る</li>
+</ul>
+<hr />
+<h3 id="22-emit-on">2.2 <code>emit</code> と <code>on</code><a class="headerlink" href="#22-emit-on" title="Permanent link">&para;</a></h3>
+<p>Socket.IO では、イベント名を使ってデータを送受信する。</p>
+<p>データを送るときは <code>emit</code> を使う。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;event_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+</code></pre></div>
+<p>データを受け取るときは <code>on</code> を使う。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;event_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// received data</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>emit</code> は「送る」と考えるとよい。</p>
+<p><code>on</code> は「受け取る準備をする」と考えるとよい。</p>
+</div>
+<hr />
+<h3 id="23-socketemit-ioemit">2.3 <code>socket.emit</code> と <code>io.emit</code><a class="headerlink" href="#23-socketemit-ioemit" title="Permanent link">&para;</a></h3>
+<p>Socket.IO では、「誰に送るか」によって使うコードが変わる。</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>socket.emit(...)</code></td>
+<td>1人のクライアントに送る</td>
+</tr>
+<tr>
+<td><code>io.emit(...)</code></td>
+<td>接続しているすべてのクライアントに送る</td>
+</tr>
+<tr>
+<td><code>socket.on(...)</code></td>
+<td>イベントを受け取る</td>
+</tr>
+</tbody>
+</table>
+<p>たとえば、サーバーから、今接続したクライアントだけにメッセージを送る場合は、次のように書く。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Welcome!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>接続している全員にメッセージを送る場合は、次のように書く。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello everyone!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>socket.emit</code> は「1人に送る」と考えるとよい。</p>
+<p><code>io.emit</code> は「全員に送る」と考えるとよい。</p>
+</div>
+<hr />
+<h2 id="3-week-10">3. Week 10 で使うファイル<a class="headerlink" href="#3-week-10" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 前提<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>このページを始める前に、Setup ページを完了している必要がある。</p>
+<p>Setup が完了している場合、プロジェクトは次のようになっている。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+├── server/
+│   └── server.js
+└── client/
+    └── src/
+        └── App.js
+</code></pre></div>
+<hr />
+<h3 id="32">3.2 編集するファイル<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>Week 10 で主に編集するファイルは、次の2つである。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chatapp/server/server.js</code></td>
+<td>サーバー側のプログラムを書く</td>
+</tr>
+<tr>
+<td><code>chatapp/client/src/App.js</code></td>
+<td>Reactクライアント側のプログラムを書く</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="33">3.3 起動するときに使うターミナル<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>この演習では、ターミナルを2つ使う。</p>
+<table>
+<thead>
+<tr>
+<th>ターミナル</th>
+<th>フォルダ</th>
+<th>コマンド</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ターミナル 1</td>
+<td><code>chatapp/server</code></td>
+<td><code>node server.js</code></td>
+</tr>
+<tr>
+<td>ターミナル 2</td>
+<td><code>chatapp/client</code></td>
+<td><code>npm start</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code>server.js</code> を変更した場合は、サーバーを再起動する必要がある。</p>
+<p><code>App.js</code> を変更した場合は、保存すれば React が自動的に更新されることが多い。</p>
+</div>
+<hr />
+<h2 id="4-step-1-react">4. Step 1: サーバーから Reactクライアントにメッセージを送る<a class="headerlink" href="#4-step-1-react" title="Permanent link">&para;</a></h2>
+<h3 id="41-step-1">4.1 Step 1 の目的<a class="headerlink" href="#41-step-1" title="Permanent link">&para;</a></h3>
+<p>Step 1 では、Reactクライアントがサーバーに接続したときに、サーバーが welcome メッセージを送る。</p>
+<p>流れは次の通りである。</p>
+<div class="highlight"><pre><span></span><code>Reactクライアントがサーバーに接続する
+        ↓
+サーバーが connection を検出する
+        ↓
+サーバーが welcome イベントを送る
+        ↓
+Reactクライアントが welcome イベントを受け取る
+        ↓
+Reactクライアントが画面にメッセージを表示する
+</code></pre></div>
+<hr />
+<h3 id="42">4.2 どのファイルを編集するか<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>Step 1 では、次の2つのファイルを編集する。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/server.js
+chatapp/client/src/App.js
+</code></pre></div>
+<hr />
+<h3 id="43-serverjs">4.3 <code>server.js</code> のコード<a class="headerlink" href="#43-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/server/server.js</code> を開き、以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Welcome! This is your first Socket.IO message.&#39;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3001</span><span class="p">;</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="44-serverjs">4.4 <code>server.js</code> の説明<a class="headerlink" href="#44-serverjs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>express</code> を読み込んでいる。Express は Webサーバーを作るためのライブラリである。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>Node.js の <code>http</code> モジュールを読み込んでいる。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>Socket.IO の <code>Server</code> を読み込んでいる。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+</code></pre></div>
+<p>Express アプリケーションを作成している。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+</code></pre></div>
+<p>Express アプリケーションを使って HTTPサーバーを作成している。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Socket.IO サーバーを作成している。</p>
+<p><code>cors: { origin: '*' }</code> は、異なる場所からの接続を許可する設定である。</p>
+<p>React は通常 <code>http://localhost:3000</code> で動く。</p>
+<p>サーバーは <code>http://localhost:3001</code> で動く。</p>
+<p>ポート番号が違うため、この設定が必要である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>クライアントが接続したときに実行される処理である。</p>
+<p><code>socket</code> は、接続してきた1つのクライアントを表す。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Welcome! This is your first Socket.IO message.&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>接続してきたクライアントに対して、<code>welcome</code> というイベント名でメッセージを送っている。</p>
+<p>この場合、送られる相手は接続してきたクライアントだけである。</p>
+<hr />
+<h3 id="45-appjs">4.5 <code>App.js</code> のコード<a class="headerlink" href="#45-appjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/client/src/App.js</code> を開き、以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;socket.io-client&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">setMsg</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setMsg</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20px&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">fontFamily</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Arial&#39;</span><span class="w"> </span><span class="p">}}</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Socket</span><span class="p">.</span><span class="nx">IO</span><span class="w"> </span><span class="nx">Chat</span><span class="w"> </span><span class="nx">App</span><span class="o">:</span><span class="w"> </span><span class="nx">Step</span><span class="w"> </span><span class="mf">1</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">says</span><span class="o">:&lt;</span><span class="err">/strong&gt; {msg}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="46-appjs">4.6 <code>App.js</code> の説明<a class="headerlink" href="#46-appjs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>React と、React の機能である <code>useEffect</code> と <code>useState</code> を読み込んでいる。</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>useState</code></td>
+<td>画面に表示するデータを保存する</td>
+</tr>
+<tr>
+<td><code>useEffect</code></td>
+<td>ページが表示されたときなどに処理を実行する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;socket.io-client&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Socket.IO Client を読み込んでいる。</p>
+<p>React からサーバーに接続するために必要である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>Reactクライアントが Socket.IO サーバーに接続する。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">setMsg</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>msg</code> は、サーバーから受け取ったメッセージを保存するための state（状態変数）である。</p>
+<p><code>setMsg</code> は、<code>msg</code> の値を更新するための関数である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setMsg</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>サーバーから <code>welcome</code> イベントを受け取ったときに実行される。</p>
+<p>受け取ったデータを <code>msg</code> に保存する。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<p><code>welcome</code> のイベントリスナーを解除する処理である。</p>
+<hr />
+<h3 id="47-step-1">4.7 Step 1 の実行方法<a class="headerlink" href="#47-step-1" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">ターミナル 1: サーバー<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p><code>chatapp/server</code> に移動する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp/server
+</code></pre></div>
+<p>サーバーを起動する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p>次のように表示されればよい。</p>
+<div class="highlight"><pre><span></span><code>Server running on port 3001
+</code></pre></div>
+<hr />
+<h4 id="2-react">ターミナル 2: Reactクライアント<a class="headerlink" href="#2-react" title="Permanent link">&para;</a></h4>
+<p>別のターミナルを開く。</p>
+<p><code>chatapp/client</code> に移動する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp/client
+</code></pre></div>
+<p>Reactクライアントを起動する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>start
+</code></pre></div>
+<p>ブラウザで次のように表示されれば成功である。</p>
+<div class="highlight"><pre><span></span><code>Socket.IO Chat App: Step 1
+
+Server says: Welcome! This is your first Socket.IO message.
+</code></pre></div>
+<hr />
+<h2 id="5-step-2-react">5. Step 2: Reactクライアントからサーバーにメッセージを送る<a class="headerlink" href="#5-step-2-react" title="Permanent link">&para;</a></h2>
+<h3 id="51-step-2">5.1 Step 2 の目的<a class="headerlink" href="#51-step-2" title="Permanent link">&para;</a></h3>
+<p>Step 2 では、ボタンをクリックしたときに、Reactクライアントからサーバーにメッセージを送る。</p>
+<p>その後、サーバーは同じクライアントに返信する。</p>
+<p>流れは次の通りである。</p>
+<div class="highlight"><pre><span></span><code>ユーザーがボタンをクリックする
+        ↓
+Reactクライアントが hello イベントを送る
+        ↓
+サーバーが hello イベントを受け取る
+        ↓
+サーバーが response イベントを返す
+        ↓
+Reactクライアントが response を画面に表示する
+</code></pre></div>
+<hr />
+<h3 id="52-serverjs">5.2 <code>server.js</code> のコード<a class="headerlink" href="#52-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/server/server.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Welcome! This is your first Socket.IO message.&#39;</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> said hello`</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;response&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;Hi! Server got your hello.&#39;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3001</span><span class="p">;</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="53">5.3 追加されたサーバー側のコード<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<p>Step 2 で新しく追加された部分は次である。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> said hello`</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;response&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Hi! Server got your hello.&#39;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>socket.on('hello', ...)</code> は、クライアントから送られてくる <code>hello</code> イベントを待つ処理である。</p>
+<p>クライアントが <code>hello</code> を送ると、サーバーは <code>response</code> イベントを返す。</p>
+<p>ここでは <code>socket.emit</code> を使っているため、返信はそのクライアントのみに送られる。</p>
+<hr />
+<h3 id="54-appjs">5.4 <code>App.js</code> のコード<a class="headerlink" href="#54-appjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/client/src/App.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;socket.io-client&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">setMsg</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">reply</span><span class="p">,</span><span class="w"> </span><span class="nx">setReply</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setMsg</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setReply</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20px&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">fontFamily</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Arial&#39;</span><span class="w"> </span><span class="p">}}</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Socket</span><span class="p">.</span><span class="nx">IO</span><span class="w"> </span><span class="nx">Chat</span><span class="w"> </span><span class="nx">App</span><span class="o">:</span><span class="w"> </span><span class="nx">Step</span><span class="w"> </span><span class="mf">2</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">says</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">connect</span><span class="o">:&lt;</span><span class="err">/strong&gt; {msg}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="nx">Send</span><span class="w"> </span><span class="nx">Hello</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">replied</span><span class="o">:&lt;</span><span class="err">/strong&gt; {reply}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="55-react">5.5 追加された React 側のコード<a class="headerlink" href="#55-react" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">reply</span><span class="p">,</span><span class="w"> </span><span class="nx">setReply</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>サーバーからの返信を保存するための state（状態変数）である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setReply</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>サーバーから <code>response</code> イベントを受け取るための処理である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">handleClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>ボタンがクリックされたときに、サーバーに <code>hello</code> イベントを送る。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span><span class="w"> </span><span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}&gt;</span>
+<span class="w">  </span><span class="nx">Send</span><span class="w"> </span><span class="nx">Hello</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>ボタンを表示している。</p>
+<p>このボタンをクリックすると、<code>handleClick</code> が実行される。</p>
+<hr />
+<h3 id="56-step-2">5.6 Step 2 の実行方法<a class="headerlink" href="#56-step-2" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更したため、サーバーを再起動する必要がある。</p>
+<p>サーバーを動かしているターミナルで、次のキーを押す。</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<p>その後、もう一度サーバーを起動する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p><code>App.js</code> は保存するだけでよい。</p>
+<p>ブラウザで <code>Send Hello</code> ボタンをクリックする。</p>
+<p>次のように表示されれば成功である。</p>
+<div class="highlight"><pre><span></span><code>Server replied: Hi! Server got your hello.
+</code></pre></div>
+<hr />
+<h2 id="6-step-3">6. Step 3: 匿名チャットを作成する<a class="headerlink" href="#6-step-3" title="Permanent link">&para;</a></h2>
+<h3 id="61-step-3">6.1 Step 3 の目的<a class="headerlink" href="#61-step-3" title="Permanent link">&para;</a></h3>
+<p>Step 3 では、テキストボックスに入力したメッセージをサーバーに送り、サーバーがすべてのクライアントに送信する。</p>
+<p>この Step では、送信者の名前は表示しない。</p>
+<p>そのため、匿名チャットである。</p>
+<p>流れは次の通りである。</p>
+<div class="highlight"><pre><span></span><code>ユーザーがメッセージを入力する
+        ↓
+Reactクライアントが send_message イベントを送る
+        ↓
+サーバーが send_message を受け取る
+        ↓
+サーバーが receive_message を全クライアントに送る
+        ↓
+すべてのクライアントがメッセージを表示する
+</code></pre></div>
+<hr />
+<h3 id="62-serverjs">6.2 <code>server.js</code> のコード<a class="headerlink" href="#62-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/server/server.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Welcome! This is your first Socket.IO message.&#39;</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> said hello`</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;response&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;Hi! Server got your hello.&#39;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> says:`</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">msg</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3001</span><span class="p">;</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="63">6.3 追加されたサーバー側のコード<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
+<p>Step 3 で新しく追加された部分は次である。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> says:`</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">msg</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>socket.on('send_message', ...)</code> は、クライアントから送られてくるチャットメッセージを受け取る処理である。</p>
+<p><code>msg</code> には、クライアントが送ったメッセージが入る。</p>
+<p>次のコードで、接続しているすべてのクライアントにメッセージを送る。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">msg</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>ここでは <code>socket.emit</code> ではなく <code>io.emit</code> を使う。</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>socket.emit</code></td>
+<td>1人のクライアントに送る</td>
+</tr>
+<tr>
+<td><code>io.emit</code></td>
+<td>すべてのクライアントに送る</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="64-appjs">6.4 <code>App.js</code> のコード<a class="headerlink" href="#64-appjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/client/src/App.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;socket.io-client&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">setMsg</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">reply</span><span class="p">,</span><span class="w"> </span><span class="nx">setReply</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">chatLog</span><span class="p">,</span><span class="w"> </span><span class="nx">setChatLog</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">([]);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">input</span><span class="p">,</span><span class="w"> </span><span class="nx">setInput</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setMsg</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setReply</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setChatLog</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">prev</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">sendMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setInput</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20px&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">fontFamily</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Arial&#39;</span><span class="w"> </span><span class="p">}}</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Socket</span><span class="p">.</span><span class="nx">IO</span><span class="w"> </span><span class="nx">Chat</span><span class="w"> </span><span class="nx">App</span><span class="o">:</span><span class="w"> </span><span class="nx">Step</span><span class="w"> </span><span class="mf">3</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">says</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">connect</span><span class="o">:&lt;</span><span class="err">/strong&gt; {msg}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="nx">Send</span><span class="w"> </span><span class="nx">Hello</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">replied</span><span class="o">:&lt;</span><span class="err">/strong&gt; {reply}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">hr</span><span class="w"> </span><span class="o">/&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Anonymous</span><span class="w"> </span><span class="nx">Chat</span><span class="o">&lt;</span><span class="err">/h3&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">input</span>
+<span class="w">        </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">input</span><span class="p">}</span>
+<span class="w">        </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setInput</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">        </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Type a message...&quot;</span>
+<span class="w">      </span><span class="o">/&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">sendMessage</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="nx">Send</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">chatLog</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">idx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="o">&lt;</span><span class="nx">li</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="w">        </span><span class="p">))}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/ul&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="65-react">6.5 追加された React 側のコード<a class="headerlink" href="#65-react" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">chatLog</span><span class="p">,</span><span class="w"> </span><span class="nx">setChatLog</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">([]);</span>
+</code></pre></div>
+<p>チャットのメッセージ一覧を保存するための state（状態変数）である。</p>
+<p><code>chatLog</code> は配列である。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Good morning&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nice to meet you&#39;</span><span class="p">]</span>
+</code></pre></div>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">input</span><span class="p">,</span><span class="w"> </span><span class="nx">setInput</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>テキストボックスに入力された文字を保存するための state（状態変数）である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setChatLog</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">prev</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">]);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>サーバーから <code>receive_message</code> イベントを受け取ったときに実行される。</p>
+<p><code>setChatLog((prev) =&gt; [...prev, data])</code> は、以前のメッセージ一覧に新しいメッセージを追加する処理である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">sendMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setInput</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>この関数は、入力されたメッセージをサーバーに送る。</p>
+<p><code>input.trim() !== ''</code> は、空のメッセージを送らないための確認である。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span>
+<span class="w">  </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">input</span><span class="p">}</span>
+<span class="w">  </span><span class="na">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setInput</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">  </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Type a message...&quot;</span>
+<span class="p">/&gt;</span>
+</code></pre></div>
+<p>メッセージ入力用のテキストボックスである。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">chatLog</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">idx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}&gt;{</span><span class="nx">item</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">))}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><code>chatLog</code> に入っているメッセージを一覧表示する。</p>
+<hr />
+<h3 id="66-step-3">6.6 Step 3 の実行方法<a class="headerlink" href="#66-step-3" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更したため、サーバーを再起動する。</p>
+<p>サーバーを動かしているターミナルで、次のキーを押す。</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<p>その後、もう一度サーバーを起動する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p><code>App.js</code> は保存するだけでよい。</p>
+<hr />
+<h3 id="67">6.7 動作確認<a class="headerlink" href="#67" title="Permanent link">&para;</a></h3>
+<p>ブラウザを2つ開く。</p>
+<p>どちらも次の URL を開く。</p>
+<div class="highlight"><pre><span></span><code>http://localhost:3000
+</code></pre></div>
+<p>1つ目のブラウザで、メッセージを入力する。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>Hello
+</code></pre></div>
+<p><code>Send</code> をクリックする。</p>
+<p>両方のブラウザに次のように表示されれば成功である。</p>
+<div class="highlight"><pre><span></span><code>Hello
+</code></pre></div>
+<hr />
+<h2 id="7-step-4">7. Step 4: 名前付きチャットを作成する<a class="headerlink" href="#7-step-4" title="Permanent link">&para;</a></h2>
+<h3 id="71-step-4">7.1 Step 4 の目的<a class="headerlink" href="#71-step-4" title="Permanent link">&para;</a></h3>
+<p>Step 4 では、メッセージに送信者の名前を表示する。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>Alice: Hello
+Bob: Hi Alice
+Alice: Nice to meet you
+</code></pre></div>
+<p>この Step がミニ課題10の提出対象である。</p>
+<hr />
+<h3 id="72-step-4">7.2 Step 4 の流れ<a class="headerlink" href="#72-step-4" title="Permanent link">&para;</a></h3>
+<p>処理の流れは次の通りである。</p>
+<div class="highlight"><pre><span></span><code>ユーザーが名前を入力する
+        ↓
+ユーザーがメッセージを入力する
+        ↓
+Reactクライアントが name と message をサーバーに送る
+        ↓
+サーバーが name と message を組み合わせる
+        ↓
+サーバーが全クライアントに送る
+        ↓
+すべてのクライアントが名前付きメッセージを表示する
+</code></pre></div>
+<hr />
+<h3 id="73-serverjs">7.3 <code>server.js</code> のコード<a class="headerlink" href="#73-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/server/server.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Server</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;socket.io&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cors</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">origin</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;Welcome! This is your first Socket.IO message.&#39;</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> said hello`</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;response&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;Hi! Server got your hello.&#39;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fullMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> says:`</span><span class="p">,</span><span class="w"> </span><span class="nx">fullMessage</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">fullMessage</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3001</span><span class="p">;</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="74-step-4">7.4 Step 4 のサーバー側のポイント<a class="headerlink" href="#74-step-4" title="Permanent link">&para;</a></h3>
+<p>Step 3 では、サーバーは1つの文字列を受け取っていた。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>Step 4 では、サーバーはオブジェクトを受け取る。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<p>React から送られるオブジェクトは次のような形である。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>サーバーでは、次のように名前とメッセージを1つの文字列にする。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">fullMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</code></pre></div>
+<p>結果は次のようになる。</p>
+<div class="highlight"><pre><span></span><code>Alice: Hello
+</code></pre></div>
+<p>そして、全クライアントに送信する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">fullMessage</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="75-appjs">7.5 <code>App.js</code> のコード<a class="headerlink" href="#75-appjs" title="Permanent link">&para;</a></h3>
+<p><code>chatapp/client/src/App.js</code> を以下のコードに置き換える。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">io</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;socket.io-client&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">setMsg</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">reply</span><span class="p">,</span><span class="w"> </span><span class="nx">setReply</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">chatLog</span><span class="p">,</span><span class="w"> </span><span class="nx">setChatLog</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">([]);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">input</span><span class="p">,</span><span class="w"> </span><span class="nx">setInput</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">setName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setMsg</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setReply</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setChatLog</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">prev</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;welcome&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;response&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;receive_message&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">sendMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">input</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">setInput</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;20px&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">fontFamily</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Arial&#39;</span><span class="w"> </span><span class="p">}}</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Socket</span><span class="p">.</span><span class="nx">IO</span><span class="w"> </span><span class="nx">Chat</span><span class="w"> </span><span class="nx">App</span><span class="o">:</span><span class="w"> </span><span class="nx">Step</span><span class="w"> </span><span class="mf">4</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">says</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">connect</span><span class="o">:&lt;</span><span class="err">/strong&gt; {msg}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="nx">Send</span><span class="w"> </span><span class="nx">Hello</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="nx">Server</span><span class="w"> </span><span class="nx">replied</span><span class="o">:&lt;</span><span class="err">/strong&gt; {reply}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">hr</span><span class="w"> </span><span class="o">/&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Named</span><span class="w"> </span><span class="nx">Chat</span><span class="o">&lt;</span><span class="err">/h3&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">input</span>
+<span class="w">          </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">name</span><span class="p">}</span>
+<span class="w">          </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">          </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter your name&quot;</span>
+<span class="w">        </span><span class="o">/&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">br</span><span class="w"> </span><span class="o">/&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">input</span>
+<span class="w">          </span><span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">input</span><span class="p">}</span>
+<span class="w">          </span><span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setInput</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">          </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Type a message...&quot;</span>
+<span class="w">        </span><span class="o">/&gt;</span>
+
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">sendMessage</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="w">          </span><span class="nx">Send</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="p">{</span><span class="nx">chatLog</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">idx</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="o">&lt;</span><span class="nx">li</span><span class="w"> </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="w">        </span><span class="p">))}</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="err">/ul&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="76-step-4-react">7.6 Step 4 の React 側のポイント<a class="headerlink" href="#76-step-4-react" title="Permanent link">&para;</a></h3>
+<p>Step 4 では、名前を保存するための state（状態変数）を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">setName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<p>名前入力用のテキストボックスを追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span>
+<span class="w">  </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">name</span><span class="p">}</span>
+<span class="w">  </span><span class="na">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">  </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter your name&quot;</span>
+<span class="p">/&gt;</span>
+</code></pre></div>
+<hr />
+<p>メッセージを送る前に、名前とメッセージの両方が入力されているか確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">input</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+<hr />
+<p>サーバーに送るデータをオブジェクトにする。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;send_message&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">input</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>これは次のようなデータを送っているという意味である。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">短い書き方</p>
+<p>次のコードは、</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">input</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>次のように短く書くこともできる。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="nx">input</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ただし、この授業では最初は分かりやすさを優先して、長い書き方を使っている。</p>
+</div>
+<hr />
+<h3 id="77-step-4">7.7 Step 4 の実行方法<a class="headerlink" href="#77-step-4" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更したため、サーバーを再起動する。</p>
+<p>サーバーを動かしているターミナルで、次のキーを押す。</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<p>その後、もう一度サーバーを起動する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p><code>App.js</code> は保存するだけでよい。</p>
+<hr />
+<h3 id="78">7.8 動作確認<a class="headerlink" href="#78" title="Permanent link">&para;</a></h3>
+<p>ブラウザを2つ開く。</p>
+<p>どちらも次の URL を開く。</p>
+<div class="highlight"><pre><span></span><code>http://localhost:3000
+</code></pre></div>
+<p>1つ目のブラウザで次のように入力する。</p>
+<div class="highlight"><pre><span></span><code>Name: Alice
+Message: Hello
+</code></pre></div>
+<p><code>Send</code> をクリックする。</p>
+<p>2つ目のブラウザで次のように入力する。</p>
+<div class="highlight"><pre><span></span><code>Name: Bob
+Message: Hi Alice
+</code></pre></div>
+<p><code>Send</code> をクリックする。</p>
+<p>両方のブラウザに次のように表示されれば成功である。</p>
+<div class="highlight"><pre><span></span><code>Alice: Hello
+Bob: Hi Alice
+</code></pre></div>
+<hr />
+<h2 id="8-10">8. ミニ課題10の提出内容<a class="headerlink" href="#8-10" title="Permanent link">&para;</a></h2>
+<p>ミニ課題10では、<strong>Step 4 の完成版のみ</strong>を提出する。</p>
+<p>提出するファイルは次の2つである。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/server.js
+chatapp/client/src/App.js
+</code></pre></div>
+<p>提出方法は、Manaba+R の指示に従う。</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Step 1、Step 2、Step 3 は提出しなくてよい。</p>
+<p>ただし、Step 4 を理解するための練習として、順番に実装することを推奨する。</p>
+</div>
+<hr />
+<h2 id="9">9. よくあるエラーと確認ポイント<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<h3 id="91-node-serverjs">9.1 <code>node server.js</code> が動かない<a class="headerlink" href="#91-node-serverjs" title="Permanent link">&para;</a></h3>
+<p>現在いる場所を確認する。</p>
+<p>正しい場所は次である。</p>
+<div class="highlight"><pre><span></span><code>chatapp/server/
+</code></pre></div>
+<p>正しいコマンドは次である。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<p>もし <code>chatapp/</code> にいる場合は、先に次を入力する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>server
+</code></pre></div>
+<hr />
+<h3 id="92-socketio-client">9.2 <code>socket.io-client</code> が見つからない<a class="headerlink" href="#92-socketio-client" title="Permanent link">&para;</a></h3>
+<p>React 側で <code>socket.io-client</code> がインストールされていない可能性がある。</p>
+<p><code>chatapp/client</code> に移動する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>chatapp/client
+</code></pre></div>
+<p>次のコマンドを実行する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install<span class="w"> </span>socket.io-client
+</code></pre></div>
+<p>その後、React を再起動する。</p>
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>start
+</code></pre></div>
+<hr />
+<h3 id="93-serverjs">9.3 <code>server.js</code> を変更したのに反映されない<a class="headerlink" href="#93-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更した場合は、サーバーの再起動が必要である。</p>
+<p>サーバーのターミナルで次を押す。</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+</code></pre></div>
+<p>その後、次を実行する。</p>
+<div class="highlight"><pre><span></span><code>node<span class="w"> </span>server.js
+</code></pre></div>
+<hr />
+<h3 id="94">9.4 ブラウザが自動で開かない<a class="headerlink" href="#94" title="Permanent link">&para;</a></h3>
+<p>次の URL を手動で開く。</p>
+<div class="highlight"><pre><span></span><code>http://localhost:3000
+</code></pre></div>
+<hr />
+<h3 id="95-2">9.5 チャットが2つのブラウザに表示されない<a class="headerlink" href="#95-2" title="Permanent link">&para;</a></h3>
+<p>次を確認する。</p>
+<ul>
+<li>サーバーが起動しているか</li>
+<li>Reactクライアントが起動しているか</li>
+<li>両方のブラウザで <code>http://localhost:3000</code> を開いているか</li>
+<li><code>server.js</code> のチャット送信で <code>io.emit</code> を使っているか</li>
+<li><code>server.js</code> を変更したあと、サーバーを再起動したか</li>
+</ul>
+<hr />
+<h2 id="10">10. まとめ<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>Week 10 では、Socket.IO を使ったリアルタイム通信を学んだ。</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step 1</td>
+<td>サーバーから Reactクライアントにメッセージを送る</td>
+</tr>
+<tr>
+<td>Step 2</td>
+<td>Reactクライアントからサーバーにメッセージを送る</td>
+</tr>
+<tr>
+<td>Step 3</td>
+<td>匿名チャットを作成する</td>
+</tr>
+<tr>
+<td>Step 4</td>
+<td>名前付きチャットを作成する</td>
+</tr>
+</tbody>
+</table>
+<p>ミニ課題10では、Step 4 の完成版を提出する。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Ampere Mondheera Pituxcoosuvarn.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
