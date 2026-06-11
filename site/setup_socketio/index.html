@@ -933,8 +933,6 @@
 <hr />
 <p><a id="3"></a></p>
 <h2 id="3-nodejsnpmnpx">3. Node.js、npm、npx を確認する<a class="headerlink" href="#3-nodejsnpmnpx" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="31">3.1 どこで行うか<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>Windows の場合は PowerShell、macOS の場合は Terminal が開くことが多い。
@@ -986,55 +984,52 @@ npx<span class="w"> </span>-v
 <p>もし <code>node</code>、<code>npm</code>、<code>npx</code> のどれかが認識されない場合は、次の「Node.js が入っていない場合」を読むこと。</p>
 <hr />
 <p><a id="4"></a></p>
-</div>
 <h2 id="4-nodejs">4. Node.js が入っていない場合<a class="headerlink" href="#4-nodejs" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="41-windows">4.1 Windows の場合<a class="headerlink" href="#41-windows" title="Permanent link">&para;</a></h3>
 <p>Node.js が入っていない場合は、Node.js の公式ページから <strong>LTS</strong> 版をインストールする。</p>
-<div class="admonition details">
-<p class="admonition-title">Windows で Node.js をインストールする手順</p>
-<ol>
-<li>Webブラウザで <code>Node.js download</code> と検索する。</li>
-<li>Node.js の公式ページを開く。</li>
-<li><strong>LTS</strong> と書かれているバージョンを選ぶ。</li>
-<li>Windows Installer をダウンロードする。</li>
-<li>ダウンロードしたインストーラーを開く。</li>
-<li>基本的には、そのまま <strong>Next</strong> を押してインストールする。</li>
-<li>インストールが終わったら、VS Code を一度閉じる。</li>
-<li>VS Code をもう一度開く。</li>
-<li>Terminal を開き、もう一度確認する。</li>
-</ol>
-<p>確認コマンド：</p>
-<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
-npm<span class="w"> </span>-v
-npx<span class="w"> </span>-v
-</code></pre></div>
-<p>3つともバージョン番号が表示されれば、準備完了です。</p>
-</div>
+<pre><code>1. Webブラウザで `Node.js download` と検索する。
+2. Node.js の公式ページを開く。
+3. **LTS** と書かれているバージョンを選ぶ。
+4. Windows Installer をダウンロードする。
+5. ダウンロードしたインストーラーを開く。
+6. 基本的には、そのまま **Next** を押してインストールする。
+7. インストールが終わったら、VS Code を一度閉じる。
+8. VS Code をもう一度開く。
+9. Terminal を開き、もう一度確認する。
+
+確認コマンド：
+
+```bash
+node -v
+npm -v
+npx -v
+```
+
+3つともバージョン番号が表示されれば、準備完了です。
+</code></pre>
 <hr />
 <h3 id="42-macos">4.2 macOS の場合<a class="headerlink" href="#42-macos" title="Permanent link">&para;</a></h3>
 <p>Node.js が入っていない場合は、Node.js の公式ページから <strong>LTS</strong> 版をインストールする。</p>
-<div class="admonition details">
-<p class="admonition-title">macOS で Node.js をインストールする手順</p>
-<ol>
-<li>Webブラウザで <code>Node.js download</code> と検索する。</li>
-<li>Node.js の公式ページを開く。</li>
-<li><strong>LTS</strong> と書かれているバージョンを選ぶ。</li>
-<li>macOS Installer をダウンロードする。</li>
-<li>ダウンロードしたインストーラーを開く。</li>
-<li>基本的には、そのまま進めてインストールする。</li>
-<li>インストールが終わったら、VS Code を一度閉じる。</li>
-<li>VS Code をもう一度開く。</li>
-<li>Terminal を開き、もう一度確認する。</li>
-</ol>
-<p>確認コマンド：</p>
-<div class="highlight"><pre><span></span><code>node<span class="w"> </span>-v
-npm<span class="w"> </span>-v
-npx<span class="w"> </span>-v
-</code></pre></div>
-<p>3つともバージョン番号が表示されれば、準備完了です。</p>
-</div>
+<pre><code>1. Webブラウザで `Node.js download` と検索する。
+2. Node.js の公式ページを開く。
+3. **LTS** と書かれているバージョンを選ぶ。
+4. macOS Installer をダウンロードする。
+5. ダウンロードしたインストーラーを開く。
+6. 基本的には、そのまま進めてインストールする。
+7. インストールが終わったら、VS Code を一度閉じる。
+8. VS Code をもう一度開く。
+9. Terminal を開き、もう一度確認する。
+
+確認コマンド：
+
+```bash
+node -v
+npm -v
+npx -v
+```
+
+3つともバージョン番号が表示されれば、準備完了です。
+</code></pre>
 <hr />
 <h3 id="43">4.3 注意<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
 <div class="admonition hint">
@@ -1044,10 +1039,7 @@ npx<span class="w"> </span>-v
 </div>
 <hr />
 <p><a id="5"></a></p>
-</div>
 <h2 id="5-vs-code">5. VS Code を開く<a class="headerlink" href="#5-vs-code" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="51-vs-code">5.1 VS Code で作業用フォルダを開く<a class="headerlink" href="#51-vs-code" title="Permanent link">&para;</a></h3>
 <p>まず、Visual Studio Code を開く。</p>
 <p>次に、上のメニューから以下を選ぶ。</p>
@@ -1064,10 +1056,7 @@ npx<span class="w"> </span>-v
 自分が分かりやすい場所であれば、どこでもよい。</p>
 <hr />
 <p><a id="6"></a></p>
-</div>
 <h2 id="6-vs-code-terminal">6. VS Code Terminal を開く<a class="headerlink" href="#6-vs-code-terminal" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <p>VS Code の上のメニューから以下を選ぶ。</p>
 <div class="highlight"><pre><span></span><code>Terminal → New Terminal
 </code></pre></div>
@@ -1077,10 +1066,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 <p>この資料の基本コマンドは、Windows と macOS の両方で使える。</p>
 <hr />
 <p><a id="7"></a></p>
-</div>
 <h2 id="7">7. よく使うコマンド<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <p>ここでは、このセットアップで使う基本コマンドを説明する。</p>
 <hr />
 <h3 id="71-mkdir">7.1 <code>mkdir</code><a class="headerlink" href="#71-mkdir" title="Permanent link">&para;</a></h3>
@@ -1127,10 +1113,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 このコマンドを実行すると、<code>client</code> フォルダが自動的に作成される。</p>
 <hr />
 <p><a id="8"></a></p>
-</div>
 <h2 id="8">8. プロジェクトフォルダを作成する<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="81">8.1 どこで行うか<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>今いる場所は、VS Code で開いた作業用フォルダである。</p>
@@ -1156,10 +1139,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 </code></pre></div>
 <hr />
 <p><a id="9"></a></p>
-</div>
 <h2 id="9-server">9. server フォルダを作成する<a class="headerlink" href="#9-server" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="91">9.1 どこで行うか<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>現在いる場所が次の場所であることを確認する。</p>
@@ -1185,10 +1165,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 </code></pre></div>
 <hr />
 <p><a id="10"></a></p>
-</div>
 <h2 id="10-nodejs">10. Node.js サーバープロジェクトを初期化する<a class="headerlink" href="#10-nodejs" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="101">10.1 どこで行うか<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>必ず、現在いる場所が次の場所であることを確認する。</p>
@@ -1215,10 +1192,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 この演習では、基本的に自分で編集する必要はない。</p>
 <hr />
 <p><a id="11"></a></p>
-</div>
 <h2 id="11">11. サーバー用ライブラリをインストールする<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="111">11.1 どこで行うか<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>必ず、現在いる場所が次の場所であることを確認する。</p>
@@ -1264,10 +1238,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 とても多くのファイルがあるが、これは正常である。</p>
 <hr />
 <p><a id="12"></a></p>
-</div>
 <h2 id="12-serverjs">12. server.js を作成する<a class="headerlink" href="#12-serverjs" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="121">12.1 どこで行うか<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code の Explorer</strong> で行う。</p>
 <p>左側のファイル一覧を使ってファイルを作成する。</p>
@@ -1295,10 +1266,7 @@ macOS の場合、多くの場合は <strong>zsh</strong> または <strong>bash
 Week 10 のページでコードを書く。</p>
 <hr />
 <p><a id="13"></a></p>
-</div>
 <h2 id="13-react-client">13. React Client を作成する<a class="headerlink" href="#13-react-client" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="131">13.1 どこで行うか<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>まず、現在いる場所を確認する。</p>
@@ -1345,10 +1313,7 @@ Ok to proceed? (y)
 </code></pre></div>
 <hr />
 <p><a id="14"></a></p>
-</div>
 <h2 id="14-socketio-client">14. Socket.IO Client をインストールする<a class="headerlink" href="#14-socketio-client" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="141">14.1 どこで行うか<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>VS Code Terminal</strong> で行う。</p>
 <p>今は <code>chatapp/</code> にいるはずである。</p>
@@ -1368,10 +1333,7 @@ Ok to proceed? (y)
 <p>このライブラリは、React から Socket.IO サーバーに接続するために使う。</p>
 <hr />
 <p><a id="15"></a></p>
-</div>
 <h2 id="15">15. 最終的なフォルダ構成<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <p>ここまで完了すると、プロジェクトは次のようになる。</p>
 <div class="highlight"><pre><span></span><code>chatapp/
 ├── server/
@@ -1393,10 +1355,7 @@ chatapp/client/src/App.js
 </code></pre></div>
 <hr />
 <p><a id="16"></a></p>
-</div>
 <h2 id="16-server">16. Server の起動方法<a class="headerlink" href="#16-server" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <p>サーバーと React は別々のプログラムである。
 そのため、<strong>VS Code Terminal を2つ</strong>使う。</p>
 <h3 id="161">16.1 どこで行うか<a class="headerlink" href="#161" title="Permanent link">&para;</a></h3>
@@ -1424,10 +1383,7 @@ chatapp/client/src/App.js
 Week 10 で <code>server.js</code> のコードを書いたあとに、このコマンドを実行する。</p>
 <hr />
 <p><a id="17"></a></p>
-</div>
 <h2 id="17-react-client">17. React Client の起動方法<a class="headerlink" href="#17-react-client" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="171">17.1 どこで行うか<a class="headerlink" href="#171" title="Permanent link">&para;</a></h3>
 <p>この作業は、<strong>2つ目の VS Code Terminal</strong> で行う。</p>
 <p>新しい Terminal を開く。</p>
@@ -1455,10 +1411,7 @@ Week 10 で <code>server.js</code> のコードを書いたあとに、このコ
 </code></pre></div>
 <hr />
 <p><a id="18"></a></p>
-</div>
 <h2 id="18">18. 変更したときの注意<a class="headerlink" href="#18" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="181-appjs">18.1 <code>App.js</code> を変更した場合<a class="headerlink" href="#181-appjs" title="Permanent link">&para;</a></h3>
 <p><code>App.js</code> は React 側のファイルである。</p>
 <p>場所：</p>
@@ -1493,10 +1446,7 @@ Week 10 で <code>server.js</code> のコードを書いたあとに、このコ
 <code>server.js</code> を変更しても、Server を再起動しなければ新しいコードは反映されない。</p>
 <hr />
 <p><a id="19"></a></p>
-</div>
 <h2 id="19">19. よくあるエラー<a class="headerlink" href="#19" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <h3 id="191-node">19.1 <code>node</code> が認識されない<a class="headerlink" href="#191-node" title="Permanent link">&para;</a></h3>
 <p>次のようなエラーが出る場合がある。</p>
 <div class="highlight"><pre><span></span><code>node is not recognized
@@ -1589,10 +1539,7 @@ npx<span class="w"> </span>-v
 </code></pre></div>
 <hr />
 <p><a id="20"></a></p>
-</div>
 <h2 id="20">20. セットアップ確認チェックリスト<a class="headerlink" href="#20" title="Permanent link">&para;</a></h2>
-<div class="admonition details">
-<p class="admonition-title">▼ 詳しい内容を表示</p>
 <p>Week 10 を始める前に、次の項目を確認する。</p>
 <ul>
 <li>[ ] <code>node -v</code> でバージョン番号が表示された。</li>
@@ -1612,7 +1559,6 @@ npx<span class="w"> </span>-v
 </ul>
 <p>すべて完了したら、次のページに進む。</p>
 <p><a href="../week10/">Week 10: Introduction to Socket.IO</a></p>
-</div>
 
 
 
