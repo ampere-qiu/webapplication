@@ -1,8 +1,0 @@
-fontawesome-markdown==0.2.6
-mkdocs
-mkdocs-material==8.2.8
-mkdocs-material-extensions==1.0.3
-plantuml-markdown==3.4.4
-pymdown-extensions==9.4
-python-markdown-math==0.8
-mkdocs-with-pdf==0.9.3
