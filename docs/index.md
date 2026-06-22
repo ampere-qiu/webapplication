@@ -33,7 +33,7 @@ Week 10 からは、新しいプロジェクトを最初から作成する。
 ## Weekly Contents
 
 * [Week 10: Socket.IO の紹介](week10.md)
-* Week 11: 作成予定
+* [Week 11: Advanced Socket.IO Features](week11.md)
 * Week 12: 作成予定
 * Week 13: 作成予定
 
@@ -41,7 +41,7 @@ Week 10 からは、新しいプロジェクトを最初から作成する。
 
 ## お知らせ
 
-Week 11、Week 12、Week 13 の内容は、今後追加する予定である。
+Week 12、Week 13 の内容は、今後追加する予定である。
 追加後、このページからアクセスできるようにする。
 
 ---

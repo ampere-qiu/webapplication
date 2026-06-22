@@ -1,0 +1,184 @@
+# MkDocs Cheat Sheet: Preview, Push, Deploy
+
+## 0. Go to the project folder
+
+Go to the folder that contains `mkdocs.yml`.
+
+```bash
+cd path/to/webapplication
+```
+
+Example:
+
+```bash
+cd ~/Documents/webapplication
+```
+
+Check that `mkdocs.yml` is there:
+
+```bash
+ls
+```
+
+You should see:
+
+```text
+mkdocs.yml
+docs/
+```
+
+---
+
+## 1. Replace or edit the Markdown file
+
+Usually, the Week 10 file is here:
+
+```text
+docs/week10.md
+```
+
+After editing, save the file.
+
+---
+
+## 2. Preview locally in browser
+
+Use this because `mkdocs` command does not work directly on my Mac:
+
+```bash
+python3 -m mkdocs serve
+```
+
+Then open the URL shown in Terminal.
+
+Usually:
+
+```text
+http://127.0.0.1:8000/
+```
+
+or:
+
+```text
+http://localhost:8000/
+```
+
+To stop the preview server:
+
+```text
+Ctrl + C
+```
+
+---
+
+## 3. Build check
+
+Run this before deploying:
+
+```bash
+python3 -m mkdocs build
+```
+
+If there is no error, it is okay.
+
+Do not manually edit the `site/` folder.
+
+---
+
+## 4. Check Git changes
+
+```bash
+git status
+```
+
+---
+
+## 5. Add and commit changes
+
+For Week 10 only:
+
+```bash
+git add docs/week10.md
+git commit -m "Update Week 10"
+```
+
+For all changed files:
+
+```bash
+git add .
+git commit -m "Update web application materials"
+```
+
+---
+
+## 6. Push to GitHub source repository
+
+Usually:
+
+```bash
+git push origin main
+```
+
+If the branch is `master`, use:
+
+```bash
+git push origin master
+```
+
+---
+
+## 7. Deploy to GitHub Pages
+
+This updates the actual website.
+
+```bash
+python3 -m mkdocs gh-deploy --force
+```
+
+---
+
+## 8. Check the public website
+
+Open:
+
+```text
+https://mondheera.website/webapplication/
+```
+
+If it still shows the old page, hard refresh:
+
+```text
+Cmd + Shift + R
+```
+
+---
+
+# Normal workflow summary
+
+```bash
+cd path/to/webapplication
+
+python3 -m mkdocs serve
+# check locally in browser
+# Ctrl + C to stop
+
+python3 -m mkdocs build
+
+git status
+git add .
+git commit -m "Update web application materials"
+git push origin main
+
+python3 -m mkdocs gh-deploy --force
+```
+
+---
+
+# Important notes
+
+* `python3 -m mkdocs serve` = preview on my own browser.
+* `git push origin main` = push source files to GitHub.
+* `python3 -m mkdocs gh-deploy --force` = update the public GitHub Pages website.
+* Edit files inside `docs/`.
+* Do not edit files inside `site/`.
+* If the public website does not update immediately, use `Cmd + Shift + R`.
