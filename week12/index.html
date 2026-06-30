@@ -1,0 +1,1806 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="React / Node.js / Socket.IO course content for Web Application training.">
+      
+      
+        <meta name="author" content="Ampere Mondheera Pituxcoosuvarn">
+      
+      
+      
+        <link rel="prev" href="../week11/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Week 12 - Web Application</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-12paint-chatcanvas-socketio" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="Web Application" class="md-header__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web Application
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 12
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Web Application" class="md-nav__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Web Application
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_socketio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ページ内メニュー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 今回作成するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-week-11-week-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Week 11 と Week 12 の違い
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. フォルダ構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step 0：基本チャットアプリの起動
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-1html-javascript-canvas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step 1：HTML と JavaScript で Canvas を試す
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-2paintboardjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Step 2：PaintBoard.js を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-3socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Step 3：Socket.IO で描画をリアルタイム共有する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Step 4：オプション課題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるエラー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 提出前に：名前と学籍番号を表示する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 提出方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ページ内メニュー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 今回作成するもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-week-11-week-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Week 11 と Week 12 の違い
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. フォルダ構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-step-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Step 0：基本チャットアプリの起動
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-1html-javascript-canvas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step 1：HTML と JavaScript で Canvas を試す
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-step-2paintboardjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Step 2：PaintBoard.js を作成する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-step-3socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Step 3：Socket.IO で描画をリアルタイム共有する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Step 4：オプション課題
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. よくあるエラー
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 提出前に：名前と学籍番号を表示する
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 提出方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-12paint-chatcanvas-socketio">Week 12：Paint Chat（Canvas + Socket.IO）<a class="headerlink" href="#week-12paint-chatcanvas-socketio" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">このページの目的</p>
+<p>このページでは、Week 11 で作成したテキストチャットアプリをもとに、Canvas を使ったお絵かき機能を追加する。<br />
+最終的には、複数のユーザーが同じ画面上でリアルタイムに線を描ける <strong>Paint Chat</strong> を作成する。</p>
+<p>Step 0 では、Week 11 のチャットアプリが正しく動くことを確認する。<br />
+Step 1 では、React を使わずに HTML と JavaScript だけで Canvas の基本を確認する。<br />
+Step 2 では、Canvas の処理を React コンポーネント <code>PaintBoard.js</code> として作成する。<br />
+Step 3 では、Socket.IO を使って描画データを他のユーザーと共有する。<br />
+Step 4 はオプション課題であり、キャンバスのクリア機能とペン色の変更機能を追加する。</p>
+</div>
+<hr />
+<h2 id="_1">ページ内メニュー<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#overview">1. 今回作成するもの</a></li>
+<li><a href="#week11-week12">2. Week 11 と Week 12 の違い</a></li>
+<li><a href="#folder">3. フォルダ構成</a></li>
+<li><a href="#step0">4. Step 0：基本チャットアプリの起動</a></li>
+<li><a href="#step1">5. Step 1：HTML と JavaScript で Canvas を試す</a></li>
+<li><a href="#step2">6. Step 2：PaintBoard.js を作成する</a></li>
+<li><a href="#step3">7. Step 3：Socket.IO で描画をリアルタイム共有する</a></li>
+<li><a href="#step4">8. Step 4：オプション課題</a></li>
+<li><a href="#trouble">9. よくあるエラー</a></li>
+<li><a href="#student-info">10. 提出前に：名前と学籍番号を表示する</a></li>
+<li><a href="#submission">11. 提出方法</a></li>
+</ul>
+<hr />
+<p><a id="overview"></a></p>
+<h2 id="1">1. 今回作成するもの<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>今回作成するものは、<strong>テキストチャット機能にお絵かき機能を追加した Paint Chat アプリ</strong>である。</p>
+<p>Week 11 では、ログイン、ユーザー一覧、全体メッセージ、個別メッセージを含むチャットアプリを作成した。Week 12 では、そのアプリに <code>&lt;canvas&gt;</code> を追加し、ユーザーがマウスで線を描けるようにする。</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>内容</th>
+<th>提出対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step 0</td>
+<td>Week 11 の基本チャットアプリを起動して確認する</td>
+<td>練習用</td>
+</tr>
+<tr>
+<td>Step 1</td>
+<td>HTML と JavaScript のみで Canvas の基本を確認する</td>
+<td>練習用</td>
+</tr>
+<tr>
+<td>Step 2</td>
+<td>Canvas を React コンポーネント <code>PaintBoard.js</code> にする</td>
+<td>練習用</td>
+</tr>
+<tr>
+<td>Step 3</td>
+<td>Socket.IO で線の座標を共有し、リアルタイム描画を実現する</td>
+<td>提出対象</td>
+</tr>
+<tr>
+<td>Step 4</td>
+<td>クリアボタン、ペン色変更などの機能を追加する</td>
+<td>任意提出</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">提出対象</p>
+<p>提出するのは <strong>Step 3 または Step 4 の完成版のみ</strong> である。<br />
+Step 0〜Step 2 は練習用である。ただし、Step 3 を理解するために、順番に確認することを推奨する。</p>
+</div>
+<hr />
+<p><a id="week11-week12"></a></p>
+<h2 id="2-week-11-week-12">2. Week 11 と Week 12 の違い<a class="headerlink" href="#2-week-11-week-12" title="Permanent link">&para;</a></h2>
+<p>Week 11 では、Socket.IO を使ってテキストメッセージを送受信した。Week 12 では、テキストではなく、<strong>線を描くための座標データ</strong>を送受信する。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>Week 11</th>
+<th>Week 12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主な目的</td>
+<td>テキストチャットを作成する</td>
+<td>チャットにお絵かき機能を追加する</td>
+</tr>
+<tr>
+<td>送るデータ</td>
+<td>メッセージ本文、送信者、宛先</td>
+<td>線の開始点・終了点、ペン色、クリア命令</td>
+</tr>
+<tr>
+<td>主なイベント</td>
+<td><code>send_message</code>, <code>receive_message</code></td>
+<td><code>draw_line</code></td>
+</tr>
+<tr>
+<td>追加ファイル</td>
+<td>なし</td>
+<td><code>PaintBoard.js</code></td>
+</tr>
+<tr>
+<td>使う技術</td>
+<td>React, Express, Socket.IO, Bootstrap</td>
+<td>React, Express, Socket.IO, Bootstrap, Canvas API</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">重要な考え方</p>
+<p>Week 12 では、Week 11 のコードを最初から作り直すのではない。<br />
+Week 11 のチャットアプリを土台として、Canvas に関係するコードを追加していく。</p>
+</div>
+<hr />
+<p><a id="folder"></a></p>
+<h2 id="3">3. フォルダ構成<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>このページでは、次のフォルダ構成を前提とする。</p>
+<div class="highlight"><pre><span></span><code>chatapp/
+├── .vscode/
+│   ├── launch.json
+│   ├── tasks.json
+│   └── settings.json
+├── client/
+│   ├── package.json
+│   └── src/
+│       ├── App.js
+│       └── PaintBoard.js
+└── server/
+    ├── package.json
+    └── server.js
+</code></pre></div>
+<p>Week 12 で主に編集するファイルは、次の3つである。</p>
+<table>
+<thead>
+<tr>
+<th>ファイル</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client/src/App.js</code></td>
+<td>チャット画面に <code>PaintBoard</code> を表示し、描画データを送受信する</td>
+</tr>
+<tr>
+<td><code>client/src/PaintBoard.js</code></td>
+<td>Canvas の描画処理を書く React コンポーネント</td>
+</tr>
+<tr>
+<td><code>server/server.js</code></td>
+<td><code>draw_line</code> イベントを受け取り、全クライアントに中継する</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">ファイル名の大文字・小文字</p>
+<p><code>PaintBoard.js</code> と <code>paintboard.js</code> は別のファイル名として扱われることがある。<br />
+この教材では、ファイル名を <strong><code>PaintBoard.js</code></strong> とする。</p>
+</div>
+<hr />
+<hr />
+<p><a id="step0"></a></p>
+<h2 id="4-step-0">4. Step 0：基本チャットアプリの起動<a class="headerlink" href="#4-step-0" title="Permanent link">&para;</a></h2>
+<p>Step 0 では、Week 11 で作成した基本チャットアプリが正しく動作するかを確認する。この段階では、Canvas 機能はまだ含まれない。</p>
+<h3 id="61-step-0">6.1 Step 0 の目的<a class="headerlink" href="#61-step-0" title="Permanent link">&para;</a></h3>
+<p>Step 0 の目的は、次の3点を確認することである。</p>
+<ul>
+<li>サーバー <code>server.js</code> が起動する</li>
+<li>React クライアント <code>App.js</code> が起動する</li>
+<li>複数ユーザーでチャットメッセージを送受信できる</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">なぜ最初に確認するのか</p>
+<p>Week 12 のお絵かき機能は、Week 11 のチャットアプリの上に追加する。<br />
+そのため、チャット部分が動いていないと、Canvas のコードを追加しても原因の切り分けが難しくなる。</p>
+</div>
+<h3 id="62">6.2 使用するファイル<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>Step 0 で使うファイルは次の2つである。</p>
+<div class="highlight"><pre><span></span><code>server.js
+App.js
+</code></pre></div>
+<p>これらは Moodle+R で配布されている。</p>
+<h3 id="63">6.3 動作確認<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
+<ol>
+<li>サーバーを起動する。</li>
+<li>React クライアントを起動する。</li>
+<li>ブラウザで <code>http://localhost:3000</code> を開く。</li>
+<li>同じブラウザで複数のタブを開く。</li>
+<li>それぞれ別のユーザー名でログインする。</li>
+<li>メッセージが自分と他のユーザーに届くか確認する。</li>
+<li>ユーザー一覧が正しく更新されるか確認する。</li>
+</ol>
+<hr />
+<p><a id="step1"></a></p>
+<h2 id="5-step-1html-javascript-canvas">5. Step 1：HTML と JavaScript で Canvas を試す<a class="headerlink" href="#5-step-1html-javascript-canvas" title="Permanent link">&para;</a></h2>
+<p>Step 1 では、React や Socket.IO を使う前に、HTML と JavaScript だけで Canvas の基本を確認する。</p>
+<h3 id="71-step-1">7.1 Step 1 の目的<a class="headerlink" href="#71-step-1" title="Permanent link">&para;</a></h3>
+<p>Canvas は、HTML5 の描画領域である。JavaScript から命令を出すことで、線、図形、文字などを描くことができる。</p>
+<p>Week 12 では、まず Canvas API の基本を理解する。</p>
+<table>
+<thead>
+<tr>
+<th>メソッド・イベント</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getContext('2d')</code></td>
+<td>2D 描画モードを取得する</td>
+</tr>
+<tr>
+<td><code>beginPath()</code></td>
+<td>新しい線を描き始める</td>
+</tr>
+<tr>
+<td><code>moveTo(x, y)</code></td>
+<td>線の開始位置を指定する</td>
+</tr>
+<tr>
+<td><code>lineTo(x, y)</code></td>
+<td>線の終点を指定する</td>
+</tr>
+<tr>
+<td><code>stroke()</code></td>
+<td>線を実際に描画する</td>
+</tr>
+<tr>
+<td><code>clearRect(x, y, w, h)</code></td>
+<td>指定範囲を消す</td>
+</tr>
+<tr>
+<td><code>mousedown</code></td>
+<td>マウスを押したとき</td>
+</tr>
+<tr>
+<td><code>mousemove</code></td>
+<td>マウスが動いたとき</td>
+</tr>
+<tr>
+<td><code>mouseup</code></td>
+<td>マウスを離したとき</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="72-html">7.2 HTML ファイルを作成する<a class="headerlink" href="#72-html" title="Permanent link">&para;</a></h3>
+<p>まず、React フォルダや server フォルダの外に、空の HTML ファイルを作成する。たとえば、プロジェクトの一番上に <code>canvas_test.html</code> という名前で保存してもよい。これは実行用のファイルではなく、保存したらブラウザで直接開けばよい。</p>
+<p>次に、その HTML ファイルに次のコードを貼り付ける。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;ja&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Canvas Drawing<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">#</span><span class="nn">paintCanvas</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">gray</span><span class="p">;</span>
+<span class="w">      </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Canvas Drawing<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;paintCanvas&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;300&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;paintCanvas&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">isDrawing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">borderLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">borderTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingLeft</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">paddingTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingTop</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">scaleX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">scaleY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">borderLeft</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scaleX</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">borderTop</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">paddingTop</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scaleY</span><span class="p">,</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">startDraw</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">isDrawing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">drawOutside</span><span class="p">);</span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseup&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">stopDrawOutside</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">drawOutside</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isDrawing</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">newPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">pos</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">newPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">newPos</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newPos</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">stopDrawOutside</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">isDrawing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">drawOutside</span><span class="p">);</span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mouseup&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">stopDrawOutside</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">startDraw</span><span class="p">);</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<hr />
+<h3 id="73">7.3 コードの説明<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<h4 id="html">HTML 部分<a class="headerlink" href="#html" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;paintCanvas&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;300&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">canvas</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>これは、幅 500 ピクセル、高さ 300 ピクセルの描画領域を作成している。</p>
+<hr />
+<h4 id="javascript">JavaScript 初期化部分<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;paintCanvas&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>canvas</code> は HTML の <code>&lt;canvas&gt;</code> 要素である。<code>ctx</code> は、Canvas に線を描くための 2D 描画コンテキストである。</p>
+<hr />
+<h4 id="_2">描画状態を保存する変数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">isDrawing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">};</span>
+</code></pre></div>
+<p><code>isDrawing</code> は、マウスが押されているかどうかを表す。<code>pos</code> は、直前のマウス位置を保存する。</p>
+<hr />
+<h4 id="getxy">getXY 関数<a class="headerlink" href="#getxy" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ブラウザ上のマウス座標を、Canvas 内部の座標に変換する関数である。</p>
+<div class="admonition note">
+<p class="admonition-title">なぜ座標変換が必要か</p>
+<p>マウスの座標はブラウザ画面全体を基準にしている。<br />
+しかし、線を描くときには Canvas の左上を基準にした座標が必要である。<br />
+そのため、Canvas の位置、border、padding、拡大縮小を考慮して座標を変換する。</p>
+</div>
+<hr />
+<h4 id="drawline">drawLine 関数<a class="headerlink" href="#drawline" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>この関数は、<code>(x0, y0)</code> から <code>(x1, y1)</code> まで線を描く。</p>
+<table>
+<thead>
+<tr>
+<th>コード</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctx.save()</code></td>
+<td>現在の描画設定を保存する</td>
+</tr>
+<tr>
+<td><code>ctx.strokeStyle = color</code></td>
+<td>線の色を設定する</td>
+</tr>
+<tr>
+<td><code>ctx.beginPath()</code></td>
+<td>新しい線を描き始める</td>
+</tr>
+<tr>
+<td><code>ctx.moveTo(x0, y0)</code></td>
+<td>線の開始点を決める</td>
+</tr>
+<tr>
+<td><code>ctx.lineTo(x1, y1)</code></td>
+<td>線の終点を決める</td>
+</tr>
+<tr>
+<td><code>ctx.stroke()</code></td>
+<td>線を描画する</td>
+</tr>
+<tr>
+<td><code>ctx.restore()</code></td>
+<td>描画設定を元に戻す</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="74-step-1">7.4 Step 1 の確認<a class="headerlink" href="#74-step-1" title="Permanent link">&para;</a></h3>
+<p>次のことを確認する。</p>
+<ul>
+<li>クリック＆ドラッグで線が描ける</li>
+<li>線がマウスの動きに追従する</li>
+<li>クリックした位置と線の始点がずれない</li>
+<li>キャンバスの外にマウスが出ても描画が続く</li>
+<li>ブラウザの表示倍率を変えても大きくずれない</li>
+</ul>
+<hr />
+<p><a id="step2"></a></p>
+<h2 id="6-step-2paintboardjs">6. Step 2：PaintBoard.js を作成する<a class="headerlink" href="#6-step-2paintboardjs" title="Permanent link">&para;</a></h2>
+<p>Step 2 では、Step 1 の Canvas 描画処理を React コンポーネントにする。</p>
+<h3 id="81-step-2">8.1 Step 2 の目的<a class="headerlink" href="#81-step-2" title="Permanent link">&para;</a></h3>
+<p>React アプリの中で Canvas を使うために、<code>PaintBoard.js</code> という新しいコンポーネントを作成する。</p>
+<p>この段階では、まだ Socket.IO による共有は行わない。自分のブラウザ上で線が描ければよい。</p>
+<div class="admonition note">
+<p class="admonition-title">React コンポーネントにする理由</p>
+<p><code>PaintBoard.js</code> として分けることで、Canvas の描画処理を <code>App.js</code> から切り離すことができる。<br />
+これにより、チャット画面のコードと描画処理のコードを分かりやすく管理できる。</p>
+</div>
+<hr />
+<h3 id="82-paintboardjs">8.2 PaintBoard.js を作成する<a class="headerlink" href="#82-paintboardjs" title="Permanent link">&para;</a></h3>
+<p><code>client/src/</code> の中に、次のファイルを作成する。</p>
+<div class="highlight"><pre><span></span><code>PaintBoard.js
+</code></pre></div>
+<p>次のコードを貼り付ける。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useRef</span><span class="p">,</span><span class="w"> </span><span class="nx">useEffect</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">PaintBoard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">onDrawLine</span><span class="p">,</span><span class="w"> </span><span class="nx">penColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">canvasControlRef</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvasRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">isDrawing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">({</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineCap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;round&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineJoin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;round&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">penColor</span><span class="p">;</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">penColor</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">getXY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">borderLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">borderTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingLeft</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">paddingTop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingTop</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">scaleX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">scaleY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">borderLeft</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scaleX</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">borderTop</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">paddingTop</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scaleY</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">startDraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isDrawing</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleDrawOutside</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseup&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleStopDrawOutside</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">draw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isDrawing</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">newPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getXY</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">penColor</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">newPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">newPos</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">onDrawLine</span><span class="o">?</span><span class="p">.(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">newPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">newPos</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">pos</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newPos</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">stopDraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isDrawing</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleDrawOutside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isDrawing</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">draw</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleStopDrawOutside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isDrawing</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleDrawOutside</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;mouseup&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleStopDrawOutside</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">canvasControlRef</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">canvasControlRef</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">drawRemoteLine</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">remoteColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">remoteColor</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">clearCanvas</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">canvasControlRef</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">canvas</span>
+<span class="w">      </span><span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">canvasRef</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">width</span><span class="o">=</span><span class="p">{</span><span class="mf">500</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">height</span><span class="o">=</span><span class="p">{</span><span class="mf">300</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">border</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1px solid gray&#39;</span><span class="w"> </span><span class="p">}}</span>
+<span class="w">      </span><span class="nx">onMouseDown</span><span class="o">=</span><span class="p">{</span><span class="nx">startDraw</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">onMouseMove</span><span class="o">=</span><span class="p">{</span><span class="nx">draw</span><span class="p">}</span>
+<span class="w">      </span><span class="nx">onMouseUp</span><span class="o">=</span><span class="p">{</span><span class="nx">stopDraw</span><span class="p">}</span>
+<span class="w">    </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">PaintBoard</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="83-appjs-paintboard">8.3 App.js で PaintBoard を読み込む<a class="headerlink" href="#83-appjs-paintboard" title="Permanent link">&para;</a></h3>
+<p><code>App.js</code> の上部に、次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">PaintBoard</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./PaintBoard&#39;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="84-appjs-paintboard">8.4 App.js の画面に PaintBoard を追加する<a class="headerlink" href="#84-appjs-paintboard" title="Permanent link">&para;</a></h3>
+<p>ログイン後のチャット画面の上部など、好きな場所に次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">PaintBoard</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>この時点では、まだ他のユーザーとは共有されない。自分の画面だけで線が描ければ成功である。</p>
+<div class="admonition note">
+<p class="admonition-title">onDrawLine について</p>
+<p><code>onDrawLine</code> は、線を描いたときに座標を外へ渡すための関数である。<br />
+Step 2 では使わなくてもよい。Step 3 で Socket.IO に座標を送るために使う。</p>
+</div>
+<hr />
+<h3 id="85-paintboardjs">8.5 PaintBoard.js の重要な考え方<a class="headerlink" href="#85-paintboardjs" title="Permanent link">&para;</a></h3>
+<h4 id="useref">useRef<a class="headerlink" href="#useref" title="Permanent link">&para;</a></h4>
+<p><code>useRef</code> は、再レンダリングしても値を保持したいときに使う。</p>
+<table>
+<thead>
+<tr>
+<th>ref</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>canvasRef</code></td>
+<td><code>&lt;canvas&gt;</code> 要素を参照する</td>
+</tr>
+<tr>
+<td><code>isDrawing</code></td>
+<td>マウスを押して描画中かどうかを保存する</td>
+</tr>
+<tr>
+<td><code>pos</code></td>
+<td>直前のマウス位置を保存する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="useeffect">useEffect<a class="headerlink" href="#useeffect" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineCap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;round&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineJoin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;round&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">penColor</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">penColor</span><span class="p">]);</span>
+</code></pre></div>
+<p>この部分では、Canvas の描画設定を行っている。<code>penColor</code> が変更された場合も、線の色を更新できる。</p>
+<hr />
+<h4 id="canvascontrolref">canvasControlRef<a class="headerlink" href="#canvascontrolref" title="Permanent link">&para;</a></h4>
+<p><code>canvasControlRef</code> は、<code>App.js</code> から <code>PaintBoard.js</code> の中の関数を呼び出すために使う。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">canvasControlRef</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">drawRemoteLine</span><span class="o">:</span><span class="w"> </span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">clearCanvas</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>これにより、<code>App.js</code> から次のように呼び出せる。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">drawRemoteLine</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">);</span>
+<span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">clearCanvas</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h3 id="86-step-2">8.6 Step 2 の確認<a class="headerlink" href="#86-step-2" title="Permanent link">&para;</a></h3>
+<p>次のことを確認する。</p>
+<ul>
+<li>React アプリ内に Canvas が表示される</li>
+<li>マウスで線を描ける</li>
+<li>マウスを押していないときは線が描かれない</li>
+<li><code>PaintBoard.js</code> が独立したコンポーネントとして動作する</li>
+</ul>
+<hr />
+<p><a id="step3"></a></p>
+<h2 id="7-step-3socketio">7. Step 3：Socket.IO で描画をリアルタイム共有する<a class="headerlink" href="#7-step-3socketio" title="Permanent link">&para;</a></h2>
+<p>Step 3 では、Canvas に描いた線を他のユーザーにも表示する。</p>
+<h3 id="91-step-3">9.1 Step 3 の目的<a class="headerlink" href="#91-step-3" title="Permanent link">&para;</a></h3>
+<p>線を描くとき、Canvas には次のような情報が必要である。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>これは、線の開始点と終了点を表す。</p>
+<p>この座標データを Socket.IO でサーバーに送り、サーバーから他のクライアントへ送ることで、リアルタイム共有を実現する。</p>
+<div class="highlight"><pre><span></span><code>自分が線を描く
+↓
+App.js が draw_line イベントを送る
+↓
+server.js が draw_line を受け取る
+↓
+server.js が全クライアントに draw_line を送る
+↓
+各クライアントが drawRemoteLine() で線を描く
+</code></pre></div>
+<hr />
+<h3 id="92-serverjs-draw_line">9.2 server.js に draw_line イベントを追加する<a class="headerlink" href="#92-serverjs-draw_line" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> の <code>io.on('connection', (socket) =&gt; { ... })</code> の中に、次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connection&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A user connected:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// login, send_message, disconnect などの処理はそのまま残す</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">io.emit を使う理由</p>
+<p><code>io.emit(...)</code> は、接続している全員にイベントを送る。<br />
+これにより、すべてのブラウザに同じ線を表示できる。</p>
+</div>
+<hr />
+<h3 id="93-appjs-paintboardref">9.3 App.js に paintBoardRef を追加する<a class="headerlink" href="#93-appjs-paintboardref" title="Permanent link">&para;</a></h3>
+<p><code>App.js</code> の state や ref を定義している部分に、次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">paintBoardRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre></div>
+<p><code>paintBoardRef</code> は、<code>App.js</code> から <code>PaintBoard.js</code> の <code>drawRemoteLine()</code> を呼び出すために使う。</p>
+<hr />
+<h3 id="94-appjs-draw_line">9.4 App.js で draw_line を受信する<a class="headerlink" href="#94-appjs-draw_line" title="Permanent link">&para;</a></h3>
+<p>Socket.IO 接続を作成している <code>useEffect</code> の中で、<code>draw_line</code> イベントを受け取る。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">io</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001&#39;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="o">?</span><span class="p">.</span><span class="nx">drawRemoteLine</span><span class="o">?</span><span class="p">.(</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">x0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">y0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">x1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">y1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">penColor</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+</code></pre></div>
+<p>ここでは、サーバーから受け取った座標を <code>drawRemoteLine()</code> に渡している。</p>
+<div class="admonition note">
+<p class="admonition-title">?. の意味</p>
+<p><code>paintBoardRef.current?.drawRemoteLine?.(...)</code> の <code>?.</code> は、値が存在するときだけ関数を呼び出す書き方である。<br />
+<code>paintBoardRef.current</code> がまだ準備できていない場合でも、エラーになりにくい。</p>
+</div>
+<hr />
+<h3 id="95-paintboard-appjs">9.5 PaintBoard を App.js に配置し、描画データを送る<a class="headerlink" href="#95-paintboard-appjs" title="Permanent link">&para;</a></h3>
+<p><code>App.js</code> の画面表示部分に、次のように <code>PaintBoard</code> を配置する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">PaintBoard</span>
+<span class="w">  </span><span class="na">canvasControlRef</span><span class="o">=</span><span class="p">{</span><span class="nx">paintBoardRef</span><span class="p">}</span>
+<span class="w">  </span><span class="na">onDrawLine</span><span class="o">=</span><span class="p">{(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}}</span>
+<span class="p">/&gt;</span>
+</code></pre></div>
+<p><code>onDrawLine</code> は、ユーザーが線を描くたびに呼ばれる。ここで <code>socketRef.current.emit(...)</code> を使い、サーバーへ座標データを送る。</p>
+<hr />
+<h3 id="96-paintboardjs-drawremoteline">9.6 PaintBoard.js 側の drawRemoteLine<a class="headerlink" href="#96-paintboardjs-drawremoteline" title="Permanent link">&para;</a></h3>
+<p><code>PaintBoard.js</code> には、次のような <code>drawRemoteLine</code> が必要である。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">drawRemoteLine</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">remoteColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">remoteColor</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>この関数は、他のユーザーが描いた線を、自分の Canvas 上に描くための関数である。</p>
+<hr />
+<h3 id="97-step-3">9.7 Step 3 の確認<a class="headerlink" href="#97-step-3" title="Permanent link">&para;</a></h3>
+<p>次のことを確認する。</p>
+<ol>
+<li>サーバーを再起動する。</li>
+<li>React クライアントを開く。</li>
+<li>2つのタブ、または2つのブラウザで <code>http://localhost:3000</code> を開く。</li>
+<li>それぞれ別のユーザー名でログインする。</li>
+<li>一方の画面で線を描く。</li>
+<li>もう一方の画面にも線が表示されることを確認する。</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">成功条件</p>
+<p>一方のブラウザで描いた線が、もう一方のブラウザにもリアルタイムで表示されれば成功である。</p>
+</div>
+<hr />
+<p><a id="step4"></a></p>
+<h2 id="8-step-4">8. Step 4：オプション課題<a class="headerlink" href="#8-step-4" title="Permanent link">&para;</a></h2>
+<p>Step 4 はオプション課題である。Step 3 までのアプリをもとに、Canvas と Socket.IO の理解を深めるための機能を追加する。</p>
+<p>ここでは、次の2つの機能を扱う。</p>
+<table>
+<thead>
+<tr>
+<th>課題</th>
+<th>内容</th>
+<th>難易度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>課題1</td>
+<td>全体キャンバスを消すボタンを追加する</td>
+<td>★☆☆</td>
+</tr>
+<tr>
+<td>課題2</td>
+<td>ペンの色を選べるようにする</td>
+<td>★★☆</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="101-1">10.1 課題1：全体キャンバスを消すボタンを追加する<a class="headerlink" href="#101-1" title="Permanent link">&para;</a></h3>
+<h4 id="_3">目的<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>キャンバスの下に <code>Clear Canvas</code> ボタンを追加し、自分と他のユーザー全員のキャンバスを一括で消せるようにする。</p>
+<hr />
+<h4 id="paintboardjsclearcanvas">PaintBoard.js：clearCanvas を定義する<a class="headerlink" href="#paintboardjsclearcanvas" title="Permanent link">&para;</a></h4>
+<p><code>PaintBoard.js</code> の <code>canvasControlRef.current</code> の中に、次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">clearCanvas</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>clearRect(0, 0, width, height)</code> は、Canvas 全体を消す処理である。</p>
+<hr />
+<h4 id="appjsclear-canvas">App.js：Clear Canvas ボタンを追加する<a class="headerlink" href="#appjsclear-canvas" title="Permanent link">&para;</a></h4>
+<p><code>PaintBoard</code> の下などに、次のボタンを追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">button</span>
+<span class="w">  </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;btn btn-warning btn-sm&quot;</span>
+<span class="w">  </span><span class="na">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 自分のキャンバスを消去</span>
+<span class="w">    </span><span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="o">?</span><span class="p">.</span><span class="nx">clearCanvas</span><span class="o">?</span><span class="p">.();</span>
+
+<span class="w">    </span><span class="c1">// 他のユーザーにも通知</span>
+<span class="w">    </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">command</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;clearCanvas&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}}</span>
+<span class="p">&gt;</span>
+<span class="w">  </span><span class="nx">Clear</span><span class="w"> </span><span class="nx">Canvas</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+<hr />
+<h4 id="appjsclearcanvas">App.js：clearCanvas メッセージを受信する<a class="headerlink" href="#appjsclearcanvas" title="Permanent link">&para;</a></h4>
+<p><code>draw_line</code> を受信する部分を、次のように変更する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">command</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;clearCanvas&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="o">?</span><span class="p">.</span><span class="nx">clearCanvas</span><span class="o">?</span><span class="p">.();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">paintBoardRef</span><span class="p">.</span><span class="nx">current</span><span class="o">?</span><span class="p">.</span><span class="nx">drawRemoteLine</span><span class="o">?</span><span class="p">.(</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">x0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">y0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">x1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">y1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">penColor</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>data.command === 'clearCanvas'</code> の場合は、線を描くのではなく、Canvas 全体を消す。</p>
+<hr />
+<h3 id="102-2">10.2 課題2：ペンの色を選べるようにする<a class="headerlink" href="#102-2" title="Permanent link">&para;</a></h3>
+<h4 id="_4">目的<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>ユーザーがペンの色を自由に選べるようにし、その色で線を描けるようにする。また、他のユーザーにも同じ色で表示されるようにする。</p>
+<hr />
+<h4 id="appjspencolor-state">App.js：penColor state を追加する<a class="headerlink" href="#appjspencolor-state" title="Permanent link">&para;</a></h4>
+<p><code>App.js</code> の state を定義している部分に、次を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">penColor</span><span class="p">,</span><span class="w"> </span><span class="nx">setPenColor</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;#000000&#39;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h4 id="appjs">App.js：カラーピッカーを追加する<a class="headerlink" href="#appjs" title="Permanent link">&para;</a></h4>
+<p><code>PaintBoard</code> の上などに、次の UI を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mb-2&quot;</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;me-2&quot;</span><span class="p">&gt;</span><span class="nx">ペンの色を選ぶ</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="w">    </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;color&quot;</span>
+<span class="w">    </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">penColor</span><span class="p">}</span>
+<span class="w">    </span><span class="na">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setPenColor</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="w">  </span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><code>type="color"</code> を使うと、色を選ぶための入力欄を表示できる。</p>
+<hr />
+<h4 id="appjspaintboard-pencolor">App.js：PaintBoard に penColor を渡す<a class="headerlink" href="#appjspaintboard-pencolor" title="Permanent link">&para;</a></h4>
+<p><code>PaintBoard</code> を次のように変更する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">PaintBoard</span>
+<span class="w">  </span><span class="na">canvasControlRef</span><span class="o">=</span><span class="p">{</span><span class="nx">paintBoardRef</span><span class="p">}</span>
+<span class="w">  </span><span class="na">penColor</span><span class="o">=</span><span class="p">{</span><span class="nx">penColor</span><span class="p">}</span>
+<span class="w">  </span><span class="na">onDrawLine</span><span class="o">=</span><span class="p">{(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">x0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">y0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">x1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">y1</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">penColor</span><span class="p">,</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}}</span>
+<span class="p">/&gt;</span>
+</code></pre></div>
+<p><code>penColor={penColor}</code> により、自分が描く線の色を <code>PaintBoard.js</code> に渡す。<br />
+また、<code>emit</code> で <code>penColor</code> も送ることで、他のユーザーにも同じ色を伝える。</p>
+<hr />
+<h4 id="paintboardjspencolor">PaintBoard.js：penColor を使って描画する<a class="headerlink" href="#paintboardjspencolor" title="Permanent link">&para;</a></h4>
+<p><code>draw()</code> 関数の中で、線の色を <code>penColor</code> にする。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">penColor</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>この行により、自分が選んだ色で線が描かれる。</p>
+<hr />
+<h4 id="paintboardjs">PaintBoard.js：リモート描画でも色を使う<a class="headerlink" href="#paintboardjs" title="Permanent link">&para;</a></h4>
+<p><code>drawRemoteLine()</code> では、受け取った <code>remoteColor</code> を使って線を描く。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">drawRemoteLine</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">,</span><span class="w"> </span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">remoteColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#000&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvasRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">remoteColor</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x0</span><span class="p">,</span><span class="w"> </span><span class="nx">y0</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">  </span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="103-step-4">10.3 Step 4 の確認<a class="headerlink" href="#103-step-4" title="Permanent link">&para;</a></h3>
+<p>次のことを確認する。</p>
+<ul>
+<li><code>Clear Canvas</code> ボタンを押すと、自分の Canvas が消える</li>
+<li><code>Clear Canvas</code> ボタンを押すと、他のユーザーの Canvas も消える</li>
+<li>色を変更すると、自分の線の色が変わる</li>
+<li>他のユーザーの画面にも、同じ色で線が表示される</li>
+</ul>
+<hr />
+<p><a id="trouble"></a></p>
+<h2 id="9">9. よくあるエラー<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<h3 id="111-module-not-found-cant-resolve-paintboard">11.1 <code>Module not found: Can't resolve './PaintBoard'</code><a class="headerlink" href="#111-module-not-found-cant-resolve-paintboard" title="Permanent link">&para;</a></h3>
+<p>原因：<code>PaintBoard.js</code> のファイル名や場所が間違っている。</p>
+<p>確認すること：</p>
+<div class="highlight"><pre><span></span><code>client/src/PaintBoard.js
+</code></pre></div>
+<p><code>App.js</code> の import は次のようにする。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">PaintBoard</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./PaintBoard&#39;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="112">11.2 線を描いても他のブラウザに表示されない<a class="headerlink" href="#112" title="Permanent link">&para;</a></h3>
+<p>確認すること：</p>
+<ul>
+<li><code>server.js</code> に <code>draw_line</code> の処理を追加したか</li>
+<li><code>server.js</code> を再起動したか</li>
+<li><code>App.js</code> で <code>socketRef.current.emit('draw_line', ...)</code> を書いたか</li>
+<li><code>App.js</code> で <code>socketRef.current.on('draw_line', ...)</code> を書いたか</li>
+<li><code>PaintBoard</code> に <code>canvasControlRef={paintBoardRef}</code> を渡しているか</li>
+</ul>
+<hr />
+<h3 id="113-paintboardrefcurrent-null">11.3 <code>paintBoardRef.current</code> が <code>null</code> になる<a class="headerlink" href="#113-paintboardrefcurrent-null" title="Permanent link">&para;</a></h3>
+<p>原因：<code>PaintBoard</code> 側で <code>canvasControlRef.current = {...}</code> を設定していない可能性がある。</p>
+<p><code>PaintBoard.js</code> に次のような <code>useEffect</code> があるか確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">canvasControlRef</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">canvasControlRef</span><span class="p">.</span><span class="nx">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">drawRemoteLine</span><span class="o">:</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">clearCanvas</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">canvasControlRef</span><span class="p">]);</span>
+</code></pre></div>
+<hr />
+<h3 id="114-clear-canvas">11.4 Clear Canvas が自分だけにしか反映されない<a class="headerlink" href="#114-clear-canvas" title="Permanent link">&para;</a></h3>
+<p>原因：ボタンを押したときに、サーバーへ通知していない可能性がある。</p>
+<p>次のコードがあるか確認する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;draw_line&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">command</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;clearCanvas&#39;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<hr />
+<h3 id="115">11.5 ペンの色が他のユーザーに反映されない<a class="headerlink" href="#115" title="Permanent link">&para;</a></h3>
+<p>確認すること：</p>
+<ul>
+<li><code>penColor</code> state を作成したか</li>
+<li><code>PaintBoard</code> に <code>penColor={penColor}</code> を渡したか</li>
+<li><code>emit</code> するときに <code>penColor</code> も送っているか</li>
+<li><code>drawRemoteLine()</code> で <code>remoteColor</code> を <code>ctx.strokeStyle</code> に設定しているか</li>
+</ul>
+<hr />
+<h3 id="116-serverjs">11.6 server.js を変更したのに動きが変わらない<a class="headerlink" href="#116-serverjs" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を変更した場合は、必ずサーバーを再起動する。</p>
+<div class="highlight"><pre><span></span><code>Ctrl + C
+node server.js
+</code></pre></div>
+<p><code>App.js</code> や <code>PaintBoard.js</code> は保存だけで反映されることが多いが、<code>server.js</code> は再起動が必要である。</p>
+<hr />
+<p><a id="student-info"></a></p>
+<h2 id="10">10. 提出前に：名前と学籍番号を表示する<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>提出前に、React アプリの画面上部に自分の名前と学籍番号を表示すること。<br />
+また、提出するスクリーンショットにも、自分の名前と学籍番号が見えるようにすること。</p>
+<p>具体的には、チャット画面や PaintBoard の上部に、次のような情報を表示するとよい。</p>
+<div class="highlight"><pre><span></span><code>名前: 立命 太郎
+学籍番号: 12345678
+</code></pre></div>
+<p>この表示があると、提出物を確認しやすくなる。</p>
+<hr />
+<p><a id="submission"></a></p>
+<h2 id="11">11. 提出方法<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p>提出先は Moodle+R である。</p>
+<p>提出ファイルは次の3つである。</p>
+<div class="highlight"><pre><span></span><code>App.js
+server.js
+PaintBoard.js
+</code></pre></div>
+<p>提出内容は、<strong>Step 3 または Step 4 の完成版のみ</strong>である。<br />
+また、動作確認した画面のスクリーンショットも提出すること。</p>
+<table>
+<thead>
+<tr>
+<th>提出するもの</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>App.js</code></td>
+<td>Week 11 のチャット画面に PaintBoard を追加した React 側コード</td>
+</tr>
+<tr>
+<td><code>server.js</code></td>
+<td><code>draw_line</code> イベントを追加したサーバー側コード</td>
+</tr>
+<tr>
+<td><code>PaintBoard.js</code></td>
+<td>Canvas 描画用の React コンポーネント</td>
+</tr>
+<tr>
+<td>スクリーンショット</td>
+<td>動作している Paint App の画面を撮影した画像</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">提出前チェック</p>
+<p>提出前に、次のことを確認する。</p>
+<ul>
+<li>サーバーが起動する</li>
+<li>React クライアントが起動する</li>
+<li>2つのブラウザでログインできる</li>
+<li>テキストチャットが動く</li>
+<li>一方で描いた線が、もう一方にも表示される</li>
+<li>Step 4 を実装した場合、クリアボタンとペン色変更が動く</li>
+<li>画面上部に自分の名前と学籍番号が表示されている</li>
+<li>動作している Paint App のスクリーンショットを用意している</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Ampere Mondheera Pituxcoosuvarn.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
