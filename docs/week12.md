@@ -1051,12 +1051,13 @@ node server.js
 
 提出先は Moodle+R である。
 
-提出ファイルは次の3つである。
+提出ファイルは次の4つである。
 
 ```text
 App.js
 server.js
 PaintBoard.js
+スクリーンショット
 ```
 
 提出内容は、**Step 3 または Step 4 の完成版のみ**である。  
