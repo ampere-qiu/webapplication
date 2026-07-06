@@ -1,0 +1,1855 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="React / Node.js / Socket.IO course content for Web Application training.">
+      
+      
+        <meta name="author" content="Ampere Mondheera Pituxcoosuvarn">
+      
+      
+      
+        <link rel="prev" href="../week14/">
+      
+      
+        <link rel="next" href="../report2-pictionary-example/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>参考例：RPS ゲーム - Web Application</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rps" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="Web Application" class="md-header__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web Application
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              参考例：RPS ゲーム
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="programming2" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Web Application" class="md-nav__button md-logo" aria-label="Web Application" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Web Application
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_socketio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 13：Report 2 中間提出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 14：Report 2 最終提出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考例：RPS ゲーム
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考例：RPS ゲーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. このゲームで作るもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. この例で学ぶこと
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 完成時のファイル構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ゲーム全体の流れ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 主な Socket.IO イベント
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. サーバー側の実装
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-react-rpsgamejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. React 側の実装：RPSGame.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-appjs-rpsgame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. App.js に RPSGame を読み込む
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 動作確認の方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. よくあるエラーと確認点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. このまま提出してはいけない理由
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 改良案
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. レポートに書ける内容の例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. チェックリスト
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 難易度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report2-pictionary-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考例：Pictionary ゲーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. このゲームで作るもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. この例で学ぶこと
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 完成時のファイル構成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ゲーム全体の流れ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-socketio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 主な Socket.IO イベント
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. サーバー側の実装
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-react-rpsgamejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. React 側の実装：RPSGame.js
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-appjs-rpsgame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. App.js に RPSGame を読み込む
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 動作確認の方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. よくあるエラーと確認点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. このまま提出してはいけない理由
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 改良案
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. レポートに書ける内容の例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. チェックリスト
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 難易度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="rps">参考例：RPS ゲーム<a class="headerlink" href="#rps" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">このページについて</p>
+<p>このページは、第2回レポート課題の参考として用意した RPS ゲームの実装例である。<br />
+RPS とは Rock-Paper-Scissors の略であり、日本語の「じゃんけん」に相当する。</p>
+<p>このページの目的は、Socket.IO を使った簡単なオンライン対戦ゲームの作り方を理解することである。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">重要</p>
+<p>このページは「参考例」である。<br />
+RPS ゲームを必ず作る必要はない。<br />
+また、このコードをそのまま提出することは不可である。  </p>
+<p>第2回レポート課題として提出する場合は、ルール、画面デザイン、メッセージ表示、スコア機能などに、自分なりの改良を加えること。</p>
+</div>
+<hr />
+<h2 id="1">1. このゲームで作るもの<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>このページでは、Socket.IO を用いて、2人で対戦できる RPS ゲームを作成する。</p>
+<p>RPS ゲームでは、2人のプレイヤーがそれぞれ次のどれかを選ぶ。</p>
+<table>
+<thead>
+<tr>
+<th>英語</th>
+<th>日本語</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rock</code></td>
+<td>グー</td>
+</tr>
+<tr>
+<td><code>paper</code></td>
+<td>パー</td>
+</tr>
+<tr>
+<td><code>scissors</code></td>
+<td>チョキ</td>
+</tr>
+</tbody>
+</table>
+<p>2人の選択がそろうと、サーバーが勝敗を判定し、両方の画面に結果を表示する。</p>
+<p><img alt="RPSゲームの画面例" src="../images/rps.png" /></p>
+<p><em>図1：RPSゲームの画面例</em></p>
+<hr />
+<h2 id="2">2. この例で学ぶこと<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>この例では、以下の内容を学ぶことができる。</p>
+<ul>
+<li>Socket.IO を使ってゲーム参加イベントを送る方法</li>
+<li>サーバー側で待機中のユーザーを管理する方法</li>
+<li>2人のユーザーを自動でマッチングする方法</li>
+<li>2人の選択がそろった後に勝敗を判定する方法</li>
+<li>React コンポーネントでゲーム画面を表示する方法</li>
+<li><code>App.js</code> から別ファイルのゲームコンポーネントを読み込む方法</li>
+</ul>
+<hr />
+<h2 id="3">3. 完成時のファイル構成<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>この例では、React 側に <code>RPSGame.js</code> を追加する。</p>
+<p>開発中のフォルダ構成は、次のようになる。</p>
+<div class="highlight"><pre><span></span><code>report2/
+├── client/
+│   └── src/
+│       ├── App.js
+│       ├── RPSGame.js
+│       └── ...
+└── server/
+    └── server.js
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p><code>RPSGame.js</code> は <code>client/src/</code> の中に作成する。<br />
+<code>server.js</code> は <code>server/</code> の中にあるファイルを編集する。</p>
+</div>
+<hr />
+<h2 id="4">4. ゲーム全体の流れ<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>RPS ゲームの基本的な流れは次の通りである。</p>
+<ol>
+<li>ユーザーAがゲームに参加する</li>
+<li>ユーザーAは待機キューに入る</li>
+<li>ユーザーBがゲームに参加する</li>
+<li>サーバーがユーザーAとユーザーBをマッチングする</li>
+<li>両方の画面に対戦相手の名前が表示される</li>
+<li>それぞれが <code>rock</code>, <code>paper</code>, <code>scissors</code> のどれかを選ぶ</li>
+<li>サーバーが勝敗を判定する</li>
+<li>両方の画面に結果が表示される</li>
+<li>「Play Again」を押すと、再度マッチングに参加できる</li>
+</ol>
+<hr />
+<h2 id="5-socketio">5. 主な Socket.IO イベント<a class="headerlink" href="#5-socketio" title="Permanent link">&para;</a></h2>
+<p>このゲームでは、主に次の Socket.IO イベントを使う。</p>
+<table>
+<thead>
+<tr>
+<th>イベント名</th>
+<th>送信元</th>
+<th>送信先</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>join_rps</code></td>
+<td>クライアント</td>
+<td>サーバー</td>
+<td>RPSゲームへの参加を要求する</td>
+</tr>
+<tr>
+<td><code>rps_start</code></td>
+<td>サーバー</td>
+<td>クライアント</td>
+<td>対戦相手が見つかったことを通知する</td>
+</tr>
+<tr>
+<td><code>rps_choice</code></td>
+<td>クライアント</td>
+<td>サーバー</td>
+<td>自分の手を送信する</td>
+</tr>
+<tr>
+<td><code>rps_result</code></td>
+<td>サーバー</td>
+<td>クライアント</td>
+<td>勝敗結果を通知する</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">レポートで使える内容</p>
+<p>第2回レポートでは、使用した Socket.IO イベントを表にまとめる必要がある。<br />
+上の表は、レポートの「内部仕様」の参考にできる。</p>
+</div>
+<hr />
+<h2 id="6">6. サーバー側の実装<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>ここからは、<code>server/server.js</code> に RPS ゲーム用の処理を追加する。</p>
+<hr />
+<h3 id="61">6.1 ゲーム状態を管理する変数を追加する<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>まず、RPS ゲームの状態を管理するために、次の2つの変数を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">waitingUsers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span><span class="w"> </span><span class="c1">// RPS の対戦待ちユーザーを入れるキュー</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rpsGames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span><span class="w"> </span><span class="c1">// username → { opponent, choice, socket }</span>
+</code></pre></div>
+<p>追加する場所の例は次の通りである。</p>
+<h4 id="_1">このコードのポイント<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>waitingUsers</code> は、相手が見つかっていない参加者を一時的に待機させるための配列である</li>
+<li><code>rpsGames</code> は、対戦中の情報を保存しておくための Map である</li>
+<li>ここで状態を管理しておくことで、どのユーザーが対戦中かを把握しやすくなる</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">waitingUsers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span><span class="w"> </span><span class="c1">// RPS の対戦待ちユーザーを入れるキュー</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">rpsGames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Map</span><span class="p">();</span><span class="w"> </span><span class="c1">// username → { opponent, choice, socket }</span>
+</code></pre></div>
+<h4 id="_2">変数の意味<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p><code>waitingUsers</code> は、まだ対戦相手が見つかっていないユーザーを入れる配列である。<br />
+1人目が参加した時点では、まだ対戦相手がいないため、この配列の中で待つ。</p>
+<p><code>rpsGames</code> は、現在進行中のゲーム情報を保存するための <code>Map</code> である。<br />
+ユーザー名をキーとして、相手の名前、自分の選択、ソケット情報を保存する。</p>
+<hr />
+<h3 id="62">6.2 勝者を判定する関数を追加する<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>次に、じゃんけんの勝敗を判定する関数を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">determineWinner</span><span class="p">(</span><span class="nx">choice1</span><span class="p">,</span><span class="w"> </span><span class="nx">choice2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">choice1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">choice2</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// draw</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">(</span><span class="nx">choice1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;rock&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">choice2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;scissors&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">    </span><span class="p">(</span><span class="nx">choice1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;scissors&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">choice2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;paper&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">    </span><span class="p">(</span><span class="nx">choice1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;paper&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">choice2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;rock&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// player 1 wins</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// player 2 wins</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>この関数は、2人の選択を比較して、次の値を返す。</p>
+<h4 id="_3">このコードのポイント<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>じゃんけんの勝敗は、3つの組み合わせを比べて決める</li>
+<li><code>return null</code> で引き分けを表す</li>
+<li>サーバー側で勝敗を一元管理することで、クライアント側の処理を簡単にできる</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>戻り値</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>1人目のプレイヤーが勝ち</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>2人目のプレイヤーが勝ち</td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td>引き分け</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="63-socketusername">6.3 ログイン時に socket.username を保存する<a class="headerlink" href="#63-socketusername" title="Permanent link">&para;</a></h3>
+<p>ログイン処理の中で、<code>socket.username</code> にユーザー名を保存する。</p>
+<p>すでに次のようなログイン処理があるとする。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">users</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb"> logged in.`</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">broadcastUserList</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>これを次のように変更する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">users</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">username</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb"> logged in.`</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">broadcastUserList</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">なぜ socket.username が必要か</p>
+<p><code>disconnect</code> などの処理では、<code>socket</code> からユーザー名を確認したい場合がある。<br />
+そのため、ログイン時に <code>socket.username = username;</code> として保存しておくと、ゲーム処理が書きやすくなる。</p>
+</div>
+<hr />
+<h3 id="64-join_rps">6.4 join_rps イベントを追加する<a class="headerlink" href="#64-join_rps" title="Permanent link">&para;</a></h3>
+<p><code>join_rps</code> は、ユーザーが RPS ゲームに参加するときに使うイベントである。</p>
+<p><code>io.on('connection', (socket) =&gt; { ... })</code> の中に、次のコードを追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;join_rps&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">username</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// 同じ socket が二重にキューへ入らないようにする</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[RPS] </span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb"> already in queue.`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb"> joined RPS queue.`</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">socket</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 2人以上待っていればマッチングする</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">player1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">player2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 同じユーザー同士がマッチしないようにする</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">player1</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">player2</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">player2</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[RPS] Prevented self-match (</span><span class="si">${</span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="si">}</span><span class="sb">).`</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">player2</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Matched RPS players:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">player2</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// player1 のゲーム情報を保存する</span>
+<span class="w">    </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">opponent</span><span class="o">:</span><span class="w"> </span><span class="nx">player2</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">choice</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">socket</span><span class="o">:</span><span class="w"> </span><span class="nx">player1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// player2 のゲーム情報を保存する</span>
+<span class="w">    </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">player2</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">opponent</span><span class="o">:</span><span class="w"> </span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">choice</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">socket</span><span class="o">:</span><span class="w"> </span><span class="nx">player2</span><span class="p">,</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// 両方のプレイヤーにゲーム開始を通知する</span>
+<span class="w">    </span><span class="nx">player1</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_start&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">opponent</span><span class="o">:</span><span class="w"> </span><span class="nx">player2</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">player2</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_start&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">opponent</span><span class="o">:</span><span class="w"> </span><span class="nx">player1</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<h4 id="_4">このコードの動き<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>このコードでは、まず参加したユーザーを <code>waitingUsers</code> に追加する。<br />
+その後、<code>waitingUsers</code> に2人以上いれば、先に入った2人を取り出してマッチングする。</p>
+<p>マッチング後は、それぞれのプレイヤーに <code>rps_start</code> イベントを送信する。<br />
+このイベントを受け取ったクライアントは、対戦相手の名前を画面に表示する。</p>
+<h4 id="_5">このコードのポイント<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>waitingUsers</code> に入れた後、2人揃った時点で対戦を開始する</li>
+<li>1人ずつ順番に待機させることで、簡単なマッチング機能を作れる</li>
+<li><code>player1.emit()</code> と <code>player2.emit()</code> で、両者に同じ情報を送る</li>
+</ul>
+<hr />
+<h3 id="65-rps_choice">6.5 rps_choice イベントを追加する<a class="headerlink" href="#65-rps_choice" title="Permanent link">&para;</a></h3>
+<p><code>rps_choice</code> は、プレイヤーが <code>rock</code>, <code>paper</code>, <code>scissors</code> のどれかを選んだときに使うイベントである。</p>
+<p><code>io.on('connection', (socket) =&gt; { ... })</code> の中に、次のコードを追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;rps_choice&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">choice</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">game</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">game</span><span class="p">.</span><span class="nx">choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">choice</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">game</span><span class="p">.</span><span class="nx">opponent</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">opponentName</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// 相手がまだ選んでいない場合は待つ</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">opponentGame</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">opponentGame</span><span class="p">.</span><span class="nx">choice</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[RPS] </span><span class="si">${</span><span class="nx">user</span><span class="si">}</span><span class="sb"> chose </span><span class="si">${</span><span class="nx">choice</span><span class="si">}</span><span class="sb">, waiting for opponent </span><span class="si">${</span><span class="nx">opponentName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">opponentGame</span><span class="p">.</span><span class="nx">choice</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">winnerCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">determineWinner</span><span class="p">(</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">opponentChoice</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">winner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">winnerCode</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="nx">winner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">user</span><span class="p">;</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">winnerCode</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="nx">winner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">opponentName</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">user</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">choice</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[</span><span class="nx">opponentName</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">opponentChoice</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="c1">// 両方のプレイヤーに結果を送る</span>
+<span class="w">  </span><span class="nx">game</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_result&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">winner</span><span class="p">,</span><span class="w"> </span><span class="nx">choices</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="nx">opponentGame</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_result&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">winner</span><span class="p">,</span><span class="w"> </span><span class="nx">choices</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// ゲーム情報を削除する</span>
+<span class="w">  </span><span class="nx">rpsGames</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">rpsGames</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">opponentName</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<h4 id="_6">このコードの動き<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>1人目が手を選んだ時点では、まだ相手が選んでいない可能性がある。<br />
+その場合は、勝敗判定をせずに待つ。</p>
+<p>2人目も手を選ぶと、両方の選択がそろう。<br />
+その時点で <code>determineWinner()</code> を使って勝敗を判定し、両方の画面へ <code>rps_result</code> を送信する。</p>
+<h4 id="_7">このコードのポイント<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>opponentGame.choice === null</code> で、相手がまだ選択していないかを確認している</li>
+<li>2人とも選択した時点で、同じ結果を両方に送信する</li>
+<li><code>rpsGames.delete()</code> で、対戦が終わったらデータを削除している</li>
+</ul>
+<hr />
+<h3 id="66-disconnect">6.6 disconnect 処理を拡張する<a class="headerlink" href="#66-disconnect" title="Permanent link">&para;</a></h3>
+<p>ユーザーが切断したとき、RPS ゲームの待機キューやゲーム情報からも削除する必要がある。</p>
+<p>すでに <code>disconnect</code> 処理がある場合は、その中に以下の処理を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;disconnect&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User disconnected: </span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb"> (Socket ID: </span><span class="si">${</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">)`</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">users</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">broadcastUserList</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// RPS の待機キューから削除する</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">socket</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">index</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">waitingUsers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// 進行中の RPS ゲームに参加していた場合</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="p">).</span><span class="nx">opponent</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">rpsGames</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">opponentName</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">opponentGame</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">opponentGame</span><span class="p">.</span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_result&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">winner</span><span class="o">:</span><span class="w"> </span><span class="nx">opponentName</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="p">[</span><span class="nx">opponentName</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">opponentGame</span><span class="p">.</span><span class="nx">choice</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;unknown&#39;</span><span class="p">,</span>
+<span class="w">          </span><span class="p">[</span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;left game&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="nx">rpsGames</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">opponentName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">rpsGames</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">socket</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p><code>disconnect</code> の処理を2回書くと、意図しない動作になることがある。<br />
+すでに <code>socket.on('disconnect', ...)</code> がある場合は、新しく作るのではなく、既存の <code>disconnect</code> の中に RPS 用の処理を追加すること。</p>
+</div>
+<hr />
+<h2 id="7-react-rpsgamejs">7. React 側の実装：RPSGame.js<a class="headerlink" href="#7-react-rpsgamejs" title="Permanent link">&para;</a></h2>
+<p>次に、React 側に <code>RPSGame.js</code> を作成する。</p>
+<p>作成する場所は次の通りである。</p>
+<div class="highlight"><pre><span></span><code>client/src/RPSGame.js
+</code></pre></div>
+<hr />
+<h3 id="71-rpsgamejs">7.1 RPSGame.js の完成例<a class="headerlink" href="#71-rpsgamejs" title="Permanent link">&para;</a></h3>
+<p>以下を <code>client/src/RPSGame.js</code> に書く。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">RPSGame</span><span class="p">({</span><span class="w"> </span><span class="nx">socket</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">opponent</span><span class="p">,</span><span class="w"> </span><span class="nx">setOpponent</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">choice</span><span class="p">,</span><span class="w"> </span><span class="nx">setChoice</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">setResult</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">status</span><span class="p">,</span><span class="w"> </span><span class="nx">setStatus</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">hasJoined</span><span class="p">,</span><span class="w"> </span><span class="nx">setHasJoined</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">socket</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">username</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">hasJoined</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[CLIENT] auto join_rps for&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;join_rps&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setStatus</span><span class="p">(</span><span class="s1">&#39;Waiting for match...&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setHasJoined</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">socket</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">hasJoined</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">socket</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">username</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">opponent</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[CLIENT] Got opponent:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">opponent</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setOpponent</span><span class="p">(</span><span class="nx">opponent</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setChoice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setResult</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">setStatus</span><span class="p">(</span><span class="sb">`Opponent found: </span><span class="si">${</span><span class="nx">opponent</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">winner</span><span class="p">,</span><span class="w"> </span><span class="nx">choices</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">choices</span><span class="p">).</span><span class="nx">find</span><span class="p">((</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">userChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">choices</span><span class="p">[</span><span class="nx">username</span><span class="p">];</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">opponentChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">choices</span><span class="p">[</span><span class="nx">opponentName</span><span class="p">];</span>
+
+<span class="w">      </span><span class="nx">setResult</span><span class="p">(</span>
+<span class="w">        </span><span class="sb">`You chose </span><span class="si">${</span><span class="nx">userChoice</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">opponentName</span><span class="si">}</span><span class="sb"> chose </span><span class="si">${</span><span class="nx">opponentChoice</span><span class="si">}</span><span class="sb">. `</span><span class="w"> </span><span class="o">+</span>
+<span class="w">          </span><span class="p">(</span><span class="nx">winner</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">username</span>
+<span class="w">            </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;🎉 You win!&#39;</span>
+<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="nx">winner</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">opponentName</span>
+<span class="w">            </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;😞 You lose!&#39;</span>
+<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;🤝 It&#39;s a draw.&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">);</span>
+
+<span class="w">      </span><span class="nx">setStatus</span><span class="p">(</span>
+<span class="w">        </span><span class="nx">winner</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">username</span>
+<span class="w">          </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;🎉 You win! Click to play again.&#39;</span>
+<span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="nx">winner</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">opponentName</span>
+<span class="w">          </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;😞 You lose! Click to play again.&#39;</span>
+<span class="w">          </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;🤝 It&#39;s a draw! Click to play again.&quot;</span>
+<span class="w">      </span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;rps_start&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleStart</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;rps_result&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleResult</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;rps_start&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleStart</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">socket</span><span class="p">.</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;rps_result&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">handleResult</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">socket</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">sendChoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">hand</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">opponent</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">choice</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">setChoice</span><span class="p">(</span><span class="nx">hand</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setStatus</span><span class="p">(</span><span class="s1">&#39;Waiting for opponent...&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;rps_choice&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">choice</span><span class="o">:</span><span class="w"> </span><span class="nx">hand</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">playAgain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;join_rps&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setOpponent</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setChoice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setResult</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">setStatus</span><span class="p">(</span><span class="s1">&#39;Waiting for match...&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mt-4 p-3 border bg-light rounded&quot;</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">h5</span><span class="p">&gt;</span><span class="nx">Rock</span><span class="w"> </span><span class="nx">Paper</span><span class="w"> </span><span class="nx">Scissors</span><span class="w"> </span><span class="nx">Game</span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">Rule</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">Choose</span><span class="w"> </span><span class="nx">Rock</span><span class="p">,</span><span class="w"> </span><span class="nx">Paper</span><span class="p">,</span><span class="w"> </span><span class="nx">or</span><span class="w"> </span><span class="nx">Scissors</span><span class="p">.</span><span class="w"> </span><span class="nx">When</span><span class="w"> </span><span class="nx">both</span><span class="w"> </span><span class="nx">players</span><span class="w"> </span><span class="nx">choose</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">the</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="nx">decides</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">winner</span><span class="p">.</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="w">      </span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">Status</span><span class="o">:</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span><span class="w"> </span><span class="p">{</span><span class="nx">status</span><span class="p">}</span>
+<span class="w">      </span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="w">      </span><span class="p">{</span><span class="o">!</span><span class="nx">choice</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">opponent</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mb-3&quot;</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="w">            </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;btn btn-outline-primary me-2&quot;</span>
+<span class="w">            </span><span class="na">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sendChoice</span><span class="p">(</span><span class="s1">&#39;rock&#39;</span><span class="p">)}</span>
+<span class="w">          </span><span class="p">&gt;</span>
+<span class="w">            </span><span class="err">✊</span><span class="w"> </span><span class="nx">Rock</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="w">            </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;btn btn-outline-success me-2&quot;</span>
+<span class="w">            </span><span class="na">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sendChoice</span><span class="p">(</span><span class="s1">&#39;paper&#39;</span><span class="p">)}</span>
+<span class="w">          </span><span class="p">&gt;</span>
+<span class="w">            </span><span class="err">✋</span><span class="w"> </span><span class="nx">Paper</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">button</span>
+<span class="w">            </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;btn btn-outline-danger&quot;</span>
+<span class="w">            </span><span class="na">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">sendChoice</span><span class="p">(</span><span class="s1">&#39;scissors&#39;</span><span class="p">)}</span>
+<span class="w">          </span><span class="p">&gt;</span>
+<span class="w">            </span><span class="err">✌</span><span class="w"> </span><span class="nx">Scissors</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">)}</span>
+
+<span class="w">      </span><span class="p">{</span><span class="nx">choice</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">result</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">p</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-muted&quot;</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="nx">You</span><span class="w"> </span><span class="nx">chose</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;{</span><span class="nx">choice</span><span class="p">}&lt;/</span><span class="nt">strong</span><span class="p">&gt;.</span><span class="w"> </span><span class="nx">Waiting</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">opponent</span><span class="p">...</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">)}</span>
+
+<span class="w">      </span><span class="p">{</span><span class="nx">result</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;alert alert-info&quot;</span><span class="p">&gt;{</span><span class="nx">result</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">          </span><span class="p">&lt;</span><span class="nt">button</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="w"> </span><span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">playAgain</span><span class="p">}&gt;</span>
+<span class="w">            </span><span class="err">🔁</span><span class="w"> </span><span class="nx">Play</span><span class="w"> </span><span class="nx">Again</span>
+<span class="w">          </span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">      </span><span class="p">)}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">RPSGame</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="_8">このコードのポイント<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>useEffect()</code> は、コンポーネントが読み込まれたときに一度だけ処理を実行するために使う</li>
+<li><code>socket.on('rps_start', handleStart)</code> で、対戦相手が見つかった時の処理を登録する</li>
+<li><code>sendChoice()</code> は、選んだ手をサーバーへ送る処理である</li>
+<li><code>playAgain()</code> は、もう一度ゲームを始めるための処理である</li>
+</ul>
+<hr />
+<h3 id="72-rpsgamejs-state">7.2 RPSGame.js の主な state<a class="headerlink" href="#72-rpsgamejs-state" title="Permanent link">&para;</a></h3>
+<p><code>RPSGame.js</code> では、次の state を使う。</p>
+<table>
+<thead>
+<tr>
+<th>state</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opponent</code></td>
+<td>対戦相手のユーザー名を保存する</td>
+</tr>
+<tr>
+<td><code>choice</code></td>
+<td>自分が選んだ手を保存する</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>勝敗結果のメッセージを保存する</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>現在の状態を表示する</td>
+</tr>
+<tr>
+<td><code>hasJoined</code></td>
+<td>同じユーザーが何度も自動参加しないようにする</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-appjs-rpsgame">8. App.js に RPSGame を読み込む<a class="headerlink" href="#8-appjs-rpsgame" title="Permanent link">&para;</a></h2>
+<p>作成した <code>RPSGame.js</code> は、<code>App.js</code> から読み込む必要がある。</p>
+<hr />
+<h3 id="81-import">8.1 import 文を追加する<a class="headerlink" href="#81-import" title="Permanent link">&para;</a></h3>
+<p><code>App.js</code> の上の方に、次の import 文を追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">RPSGame</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./RPSGame&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Bootstrap をまだ読み込んでいない場合は、次の import も追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="s1">&#39;bootstrap/dist/css/bootstrap.min.css&#39;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="82-return-rpsgame">8.2 return の中に RPSGame を追加する<a class="headerlink" href="#82-return-rpsgame" title="Permanent link">&para;</a></h3>
+<p>ログイン後の画面、またはチャット画面の下などに、次のように追加する。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;mt-4&quot;</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="p">&lt;</span><span class="nt">RPSGame</span><span class="w"> </span><span class="na">socket</span><span class="o">=</span><span class="p">{</span><span class="nx">socketRef</span><span class="p">.</span><span class="nx">current</span><span class="p">}</span><span class="w"> </span><span class="na">username</span><span class="o">=</span><span class="p">{</span><span class="nx">username</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">props の意味</p>
+<p><code>socket={socketRef.current}</code> は、現在接続している Socket.IO の接続情報を RPSGame に渡している。<br />
+<code>username={username}</code> は、ログイン中のユーザー名を RPSGame に渡している。</p>
+</div>
+<hr />
+<h2 id="9">9. 動作確認の方法<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>RPS ゲームは2人でプレイするゲームである。<br />
+そのため、動作確認ではブラウザを2つ開く必要がある。</p>
+<hr />
+<h3 id="91">9.1 サーバーを起動する<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<p>ターミナルで <code>server</code> フォルダに移動し、サーバーを起動する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>server
+node<span class="w"> </span>server.js
+</code></pre></div>
+<hr />
+<h3 id="92">9.2 クライアントを起動する<a class="headerlink" href="#92" title="Permanent link">&para;</a></h3>
+<p>別のターミナルで <code>client</code> フォルダに移動し、React アプリを起動する。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>client
+npm<span class="w"> </span>start
+</code></pre></div>
+<hr />
+<h3 id="93-2">9.3 2つのブラウザで確認する<a class="headerlink" href="#93-2" title="Permanent link">&para;</a></h3>
+<p>次のようにして2人分のユーザーを用意する。</p>
+<ol>
+<li>1つ目のブラウザでログインする</li>
+<li>2つ目のブラウザ、またはシークレットウィンドウでログインする</li>
+<li>それぞれ違うユーザー名を使う</li>
+<li>両方の画面で RPS ゲームが表示されることを確認する</li>
+<li>両方のユーザーが手を選ぶ</li>
+<li>両方の画面に同じ結果が表示されることを確認する</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">確認のコツ</p>
+<p>1つのブラウザだけでは、相手がいないためマッチングが完了しない。<br />
+必ず2つのブラウザ、または通常ウィンドウとシークレットウィンドウを使って確認すること。</p>
+</div>
+<hr />
+<h2 id="10">10. よくあるエラーと確認点<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<h3 id="101">10.1 ボタンが表示されない<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
+<p>以下を確認すること。</p>
+<ul>
+<li>2人のユーザーでログインしているか</li>
+<li>2人が同じサーバーに接続しているか</li>
+<li><code>join_rps</code> が送信されているか</li>
+<li>サーバーのコンソールに <code>Matched RPS players</code> が表示されているか</li>
+<li><code>RPSGame</code> を <code>App.js</code> の return 内に追加しているか</li>
+</ul>
+<hr />
+<h3 id="102">10.2 結果が表示されない<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<p>以下を確認すること。</p>
+<ul>
+<li>両方のユーザーが手を選んだか</li>
+<li><code>rps_choice</code> がサーバーに届いているか</li>
+<li><code>determineWinner()</code> が <code>server.js</code> に追加されているか</li>
+<li><code>socket.on('rps_result', handleResult)</code> が <code>RPSGame.js</code> に書かれているか</li>
+</ul>
+<hr />
+<h3 id="103">10.3 同じユーザーが何度もマッチングされる<a class="headerlink" href="#103" title="Permanent link">&para;</a></h3>
+<p>以下を確認すること。</p>
+<ul>
+<li><code>hasJoined</code> を使っているか</li>
+<li><code>waitingUsers.find((s) =&gt; s.id === socket.id)</code> のチェックがあるか</li>
+<li><code>Play Again</code> を押したときだけ <code>join_rps</code> を再送しているか</li>
+</ul>
+<hr />
+<h3 id="104">10.4 サーバー側を編集したのに反映されない<a class="headerlink" href="#104" title="Permanent link">&para;</a></h3>
+<p><code>server.js</code> を編集した場合は、サーバーを再起動する必要がある。</p>
+<div class="highlight"><pre><span></span><code>Ctrl<span class="w"> </span>+<span class="w"> </span>C
+node<span class="w"> </span>server.js
+</code></pre></div>
+<p>React 側の <code>App.js</code> や <code>RPSGame.js</code> は、保存すると自動的に反映されることが多い。<br />
+しかし、サーバー側は自動で更新されないため注意すること。</p>
+<hr />
+<h2 id="11">11. このまま提出してはいけない理由<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p>このページのコードは参考例である。<br />
+第2回レポート課題では、自分なりの改良点が必要である。</p>
+<p>単にコードをコピーしただけの場合、オリジナリティが不足する。<br />
+また、他の学生と内容が同じになりやすく、不正行為と判断される可能性がある。</p>
+<div class="admonition warning">
+<p class="admonition-title">提出時の注意</p>
+<p>補足資料またはこのページのコードをそのまま提出することは不可である。<br />
+必ず、ルール、画面、メッセージ、機能、デザインなどに自分なりの変更を加えること。</p>
+</div>
+<hr />
+<h2 id="12">12. 改良案<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<p>RPS ゲームをもとに、以下のような改良ができる。</p>
+<hr />
+<h3 id="121">12.1 スコア機能を追加する<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
+<p>勝った回数を表示する機能である。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>UserA: 2 points
+UserB: 1 point
+</code></pre></div>
+<hr />
+<h3 id="122-3">12.2 ベストオブ3にする<a class="headerlink" href="#122-3" title="Permanent link">&para;</a></h3>
+<p>1回だけで勝敗を決めるのではなく、3回中2回勝った方を勝者にするルールである。</p>
+<hr />
+<h3 id="123">12.3 タイマーを追加する<a class="headerlink" href="#123" title="Permanent link">&para;</a></h3>
+<p>一定時間内に手を選ばないと負けになるルールである。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>10秒以内に選択してください。
+</code></pre></div>
+<hr />
+<h3 id="124">12.4 結果メッセージをカスタマイズする<a class="headerlink" href="#124" title="Permanent link">&para;</a></h3>
+<p>勝敗結果の表示を、自分のテーマに合わせて変更する。</p>
+<p>例：</p>
+<div class="highlight"><pre><span></span><code>🔥 Great choice!
+😱 Too slow!
+🎯 Nice prediction!
+</code></pre></div>
+<hr />
+<h3 id="125-ui">12.5 UI を改良する<a class="headerlink" href="#125-ui" title="Permanent link">&para;</a></h3>
+<p>色、レイアウト、ボタン、背景、フォントなどを変更する。</p>
+<p>例：</p>
+<ul>
+<li>カード型レイアウトにする</li>
+<li>勝ったときの色を変える</li>
+<li>アイコンを追加する</li>
+<li>ボタンを大きくする</li>
+<li>スマートフォンでも見やすくする</li>
+</ul>
+<hr />
+<h3 id="126">12.6 別のゲームに発展させる<a class="headerlink" href="#126" title="Permanent link">&para;</a></h3>
+<p>RPS の構造は、他の簡単な対戦ゲームにも応用できる。</p>
+<table>
+<thead>
+<tr>
+<th>発展例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5種じゃんけん</td>
+<td>Rock, Paper, Scissors に Lizard, Spock を追加する</td>
+</tr>
+<tr>
+<td>〇×ゲーム</td>
+<td>交互にマスを選び、3つ並べたら勝ちにする</td>
+</tr>
+<tr>
+<td>クイズ対戦</td>
+<td>同じ問題を表示し、早く正解した方を勝ちにする</td>
+</tr>
+<tr>
+<td>リアクションゲーム</td>
+<td>合図が出た後、早くボタンを押した方を勝ちにする</td>
+</tr>
+<tr>
+<td>数字当てゲーム</td>
+<td>サーバーが決めた数字を当てる</td>
+</tr>
+<tr>
+<td>同時選択ゲーム</td>
+<td>2人が同時に選び、あとで結果を公開する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13">13. レポートに書ける内容の例<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p>RPS ゲームをもとにレポートを書く場合、以下のような内容を説明できる。</p>
+<hr />
+<h3 id="131">13.1 外部仕様の例<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
+<p>外部仕様では、ユーザーから見たアプリの機能を書く。</p>
+<div class="highlight"><pre><span></span><code>本アプリでは、ログインしたユーザーがチャット機能を利用できる。
+また、RPSゲーム画面では、他のユーザーと自動的にマッチングされ、
+rock、paper、scissors のいずれかを選択して対戦できる。
+両者の選択がそろうと、サーバーが勝敗を判定し、結果を画面に表示する。
+</code></pre></div>
+<hr />
+<h3 id="132">13.2 内部仕様の例<a class="headerlink" href="#132" title="Permanent link">&para;</a></h3>
+<p>内部仕様では、開発者向けにプログラムの構成を書く。</p>
+<div class="highlight"><pre><span></span><code>RPSゲームでは、サーバー側で waitingUsers と rpsGames を用いてゲーム状態を管理している。
+waitingUsers は対戦待ちユーザーのキューであり、2人そろった時点でマッチングを行う。
+rpsGames は進行中のゲーム情報を保存する Map であり、各ユーザーの対戦相手、選択内容、socket 情報を保持する。
+</code></pre></div>
+<hr />
+<h3 id="133-socketio">13.3 Socket.IO イベント表の例<a class="headerlink" href="#133-socketio" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>イベント名</th>
+<th>引数</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>join_rps</code></td>
+<td><code>username</code></td>
+<td>RPSゲームへの参加要求を送信する</td>
+</tr>
+<tr>
+<td><code>rps_start</code></td>
+<td><code>{ opponent }</code></td>
+<td>対戦相手が見つかったことを通知する</td>
+</tr>
+<tr>
+<td><code>rps_choice</code></td>
+<td><code>{ user, choice }</code></td>
+<td>プレイヤーの選択を送信する</td>
+</tr>
+<tr>
+<td><code>rps_result</code></td>
+<td><code>{ winner, choices }</code></td>
+<td>勝敗結果と両者の選択を通知する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14">14. チェックリスト<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<p>提出前に、以下を確認すること。</p>
+<ul>
+<li>[ ] 2人のユーザーで RPS ゲームをプレイできる</li>
+<li>[ ] <code>RPSGame.js</code> を <code>client/src/</code> に作成した</li>
+<li>[ ] <code>App.js</code> から <code>RPSGame</code> を import している</li>
+<li>[ ] <code>server.js</code> に <code>join_rps</code> を追加した</li>
+<li>[ ] <code>server.js</code> に <code>rps_choice</code> を追加した</li>
+<li>[ ] <code>server.js</code> に <code>determineWinner()</code> を追加した</li>
+<li>[ ] <code>disconnect</code> 時に RPS の情報を削除している</li>
+<li>[ ] 画面上にゲームのルールを表示している</li>
+<li>[ ] 自分なりの改良を加えた</li>
+<li>[ ] 名前と学籍番号がアプリ上に表示されている</li>
+</ul>
+<hr />
+<h2 id="15">15. 難易度<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<p>この参考例の難易度は以下の通りである。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>難易度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本実装</td>
+<td>Easy</td>
+</tr>
+<tr>
+<td>UI 改良</td>
+<td>Easy</td>
+</tr>
+<tr>
+<td>スコア機能追加</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>ベストオブ3</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>タイマー追加</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>5種じゃんけんへの拡張</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>〇×ゲームへの発展</td>
+<td>Hard</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="16">16. まとめ<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
+<p>RPS ゲームは、Socket.IO を使ったオンライン対戦ゲームの基本構造を学ぶための参考例である。<br />
+待機キュー、マッチング、選択送信、勝敗判定、結果表示という流れは、多くのオンラインゲームに応用できる。</p>
+<p>ただし、第2回レポート課題では、この参考例をそのまま提出するのではなく、自分なりの工夫を加える必要がある。<br />
+ルール、UI、メッセージ、スコア、タイマーなどを変更し、オリジナル性のあるアプリとして完成させること。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Ampere Mondheera Pituxcoosuvarn.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
