@@ -35,14 +35,16 @@ Week 10 からは、新しいプロジェクトを最初から作成する。
 * [Week 10: Socket.IO の紹介](week10.md)
 * [Week 11: Advanced Socket.IO Features](week11.md)
 * [Week 12: Paint Chat](week12.md)
-* Week 13-14: 作成予定
+* [Week 13: 第2回レポート課題（プログラム中間提出）](week13.md)
+* [Week 14: 第2回レポート課題（最終提出）](week14.md)
+* [参考例：RPS ゲーム](report2-rps-example.md)
+* [参考例：Pictionary ゲーム](report2-pictionary-example.md)
 
 ---
 
 ## お知らせ
 
-Week 13-14 の内容は、今後追加する予定である。
-追加後、このページからアクセスできるようにする。
+Week 13-14 の内容を追加し、各ページからアクセスできるようにした。
 
 ---
 

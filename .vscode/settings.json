@@ -3,6 +3,7 @@
         "/^python3 -m mkdocs build --clean$/": {
             "approve": true,
             "matchCommandLine": true
-        }
+        },
+        "mkdocs": true
     }
 }
