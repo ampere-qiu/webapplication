@@ -472,10 +472,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#4-week-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 提出物
+        4. Week 13 の提出方法
       
     </span>
   </a>
@@ -642,10 +642,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
+  <a href="#4-week-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 提出物
+        4. Week 13 の提出方法
       
     </span>
   </a>
@@ -704,7 +704,7 @@
 ルール、デザイン、メッセージ表示、機能などに、何らかのオリジナル要素を加える必要がある。</p>
 </div>
 <h2 id="3">3. 使うフォルダ構成<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>report2/
+<div class="highlight"><pre><span></span><code>chatapp/
 ├── client/
 │   └── src/
 └── server/
@@ -714,32 +714,30 @@
 <ul>
 <li><code>client/src/</code> では、React で表示する画面やコンポーネントを作る</li>
 <li><code>server/server.js</code> では、Socket.IO を使ってクライアント同士の通信を管理する</li>
-<li><code>Week13/</code> は、提出用にまとめるフォルダである</li>
+<li>そのまま開発用の <code>chatapp/</code> 構成を使い、提出時にサーバー側とクライアント側を分けて送る</li>
 </ul>
-<h2 id="4">4. 提出物<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Week13/<ul>
-<li>server.js</li>
-<li>src/</li>
-</ul>
-</li>
-<li>ZIP 形式で圧縮する</li>
-<li>ファイル名: week13_氏名.zip</li>
-<li>Moodle+R に提出する</li>
-</ul>
-<h3 id="41">4.1 提出方法<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<h2 id="4-week-13">4. Week 13 の提出方法<a class="headerlink" href="#4-week-13" title="Permanent link">&para;</a></h2>
+<p>開発は、これまでと同じように <code>chatapp/</code> の中で進める。<br />
+そのまま全体をまとめて提出するのではなく、Moodle+R の「サーバー側」と「クライアント側」の提出欄に分けて提出する。</p>
+<h3 id="41">4.1 サーバー側の提出<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <ol>
-<li><code>report2/server/server.js</code> を <code>Week13/server.js</code> にコピーする</li>
-<li><code>report2/client/src</code> を <code>Week13/src</code> にコピーする</li>
-<li><code>Week13</code> フォルダを ZIP 圧縮する</li>
-<li><code>week13_氏名.zip</code> という名前で提出する</li>
+<li><code>chatapp/server/server.js</code> を準備する</li>
+<li>そのファイルをそのまま Moodle+R のサーバー側提出欄にアップロードする</li>
+<li>ファイル名は <code>server.js</code> のままにする。<code>server_week13_氏名.js</code> など別名に変更しない</li>
+</ol>
+<h3 id="42">4.2 クライアント側の提出<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>chatapp/client/src</code> フォルダの中身を確認する</li>
+<li><code>src</code> フォルダごとを ZIP 形式で圧縮する</li>
+<li>ZIP ファイルの名前は例として <code>src_week13_氏名.zip</code> のようにする</li>
+<li>その ZIP ファイルを Moodle+R のクライアント側提出欄にアップロードする</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Week 13 の提出について</p>
 <p>Week 13 では PDF レポートは不要である。<br />
 ゲームが未完成でもよい。ただし、進捗がわかるように、動作する部分を含めて提出すること。</p>
 </div>
-<h3 id="42">4.2 提出時に意識すること<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<h3 id="43">4.3 提出時に意識すること<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">重要</p>
 <p>アプリ画面の上部に、名前と学籍番号を表示すること。<br />
