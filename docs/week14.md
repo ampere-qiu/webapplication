@@ -20,7 +20,7 @@ Week 14 では、Moodle+R で次の3つを分けて提出する。
 
 1. `chatapp/server/server.js` を準備する
 2. そのファイルをそのまま Moodle+R のサーバー側提出欄にアップロードする
-3. ファイル名は `server.js` のままにする。`server_week14_氏名.js` など別名に変更しない
+3. ファイル名は `server_week14_氏名.js` のようにする
 
 ## 3. クライアント側の提出
 

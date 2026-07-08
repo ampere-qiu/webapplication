@@ -50,7 +50,7 @@ chatapp/
 
 1. `chatapp/server/server.js` を準備する
 2. そのファイルをそのまま Moodle+R のサーバー側提出欄にアップロードする
-3. ファイル名は `server.js` のままにする。`server_week13_氏名.js` など別名に変更しない
+3. ファイル名は `server_week13_氏名.js` のようにする
 
 ### 4.2 クライアント側の提出
 
