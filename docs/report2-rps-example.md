@@ -59,7 +59,7 @@ RPS ゲームでは、2人のプレイヤーがそれぞれ次のどれかを選
 開発中のフォルダ構成は、次のようになる。
 
 ```text
-report2/
+chatapp/
 ├── client/
 │   └── src/
 │       ├── App.js
@@ -70,8 +70,8 @@ report2/
 ```
 
 !!! note "注意"
-    `RPSGame.js` は `client/src/` の中に作成する。  
-    `server.js` は `server/` の中にあるファイルを編集する。
+    `RPSGame.js` は `chatapp/client/src/` の中に作成する。  
+    `server.js` は `chatapp/server/` の中にあるファイルを編集する。
 
 ---
 
@@ -110,7 +110,7 @@ RPS ゲームの基本的な流れは次の通りである。
 
 ## 6. サーバー側の実装
 
-ここからは、`server/server.js` に RPS ゲーム用の処理を追加する。
+ここからは、`chatapp/server/server.js` に RPS ゲーム用の処理を追加する。
 
 ---
 
@@ -403,7 +403,7 @@ socket.on('disconnect', () => {
 作成する場所は次の通りである。
 
 ```text
-client/src/RPSGame.js
+chatapp/client/src/RPSGame.js
 ```
 
 ---
