@@ -1001,7 +1001,7 @@ Pictionary ゲームを必ず作る必要はない。<br />
 <h2 id="3">3. 完成時のファイル構成<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>この例では、React 側に <code>PictionaryGame.js</code> と <code>PaintBoard.js</code> を追加する。</p>
 <p>開発中のフォルダ構成は、次のようになる。</p>
-<div class="highlight"><pre><span></span><code>report2/
+<div class="highlight"><pre><span></span><code>chatapp/
 ├── client/
 │   └── src/
 │       ├── App.js
@@ -1013,8 +1013,8 @@ Pictionary ゲームを必ず作る必要はない。<br />
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">注意</p>
-<p><code>PictionaryGame.js</code> と <code>PaintBoard.js</code> は <code>client/src/</code> の中に作成する。<br />
-<code>server.js</code> は <code>server/</code> の中にあるファイルを編集する。</p>
+<p><code>PictionaryGame.js</code> と <code>PaintBoard.js</code> は <code>chatapp/client/src/</code> の中に作成する。<br />
+<code>server.js</code> は <code>chatapp/server/</code> の中にあるファイルを編集する。</p>
 </div>
 <hr />
 <h2 id="4">4. ゲーム全体の流れ<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
@@ -1097,7 +1097,7 @@ Pictionary ゲームを必ず作る必要はない。<br />
 </div>
 <hr />
 <h2 id="6">6. サーバー側の実装<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p>ここからは、<code>server/server.js</code> に Pictionary ゲーム用の処理を追加する。</p>
+<p>ここからは、<code>chatapp/server/server.js</code> に Pictionary ゲーム用の処理を追加する。</p>
 <hr />
 <h3 id="61">6.1 ゲーム状態を管理する変数を追加する<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
 <p>まず、Pictionary ゲームの状態を管理するために、次の2つの変数を追加する。</p>
@@ -1354,7 +1354,7 @@ Pictionary ゲームを必ず作る必要はない。<br />
 <p>Pictionary では、キャンバスに絵を描く必要がある。<br />
 そのため、まず <code>PaintBoard.js</code> を作成する。</p>
 <p>作成する場所は次の通りである。</p>
-<div class="highlight"><pre><span></span><code>client/src/PaintBoard.js
+<div class="highlight"><pre><span></span><code>chatapp/client/src/PaintBoard.js
 </code></pre></div>
 <hr />
 <h3 id="71-paintboardjs">7.1 PaintBoard.js の完成例<a class="headerlink" href="#71-paintboardjs" title="Permanent link">&para;</a></h3>
@@ -1472,7 +1472,7 @@ Pictionary ゲームを必ず作る必要はない。<br />
 <h2 id="8-react-pictionarygamejs">8. React 側の実装：PictionaryGame.js<a class="headerlink" href="#8-react-pictionarygamejs" title="Permanent link">&para;</a></h2>
 <p>次に、ゲーム全体を管理する <code>PictionaryGame.js</code> を作成する。</p>
 <p>作成する場所は次の通りである。</p>
-<div class="highlight"><pre><span></span><code>client/src/PictionaryGame.js
+<div class="highlight"><pre><span></span><code>chatapp/client/src/PictionaryGame.js
 </code></pre></div>
 <hr />
 <h3 id="81-pictionarygamejs">8.1 PictionaryGame.js の完成例<a class="headerlink" href="#81-pictionarygamejs" title="Permanent link">&para;</a></h3>
